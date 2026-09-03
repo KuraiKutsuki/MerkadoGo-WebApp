@@ -1,0 +1,72 @@
+[
+  {
+    "entrance_id": 1,
+    "node_id": "node_ex_1",
+    "description": "Straight From Church"
+  },
+  {
+    "entrance_id": 2,
+    "node_id": "node_ex_2",
+    "description": "The Back of LCC"
+  },
+  {
+    "entrance_id": 3,
+    "node_id": "node_ex_3",
+    "description": "Side of LCC"
+  },
+  {
+    "entrance_id": 4,
+    "node_id": "node_ex_t3",
+    "description": "Wet Market Left Side"
+  },
+  {
+    "entrance_id": 5,
+    "node_id": "node_ex_t4",
+    "description": "Rice Section From Wet Market Left Side"
+  },
+  {
+    "entrance_id": 6,
+    "node_id": "node_ex_t17",
+    "description": "Rice Section Intersection"
+  },
+  {
+    "entrance_id": 7,
+    "node_id": "node_ex_6",
+    "description": "Near Rosco Building"
+  },
+  {
+    "entrance_id": 8,
+    "node_id": "node_ex_t22",
+    "description": "Right Side Fruit Section"
+  },
+  {
+    "entrance_id": 9,
+    "node_id": "node_ex_c1",
+    "description": "Dry Market Back"
+  },
+  {
+    "entrance_id": 10,
+    "node_id": "node_ex_t19",
+    "description": "Intersection From Side of LCC"
+  },
+  {
+    "entrance_id": 11,
+    "node_id": "node_ex_t14",
+    "description": "Intersection From Back of LCC"
+  },
+  {
+    "entrance_id": 12,
+    "node_id": "node_ex_t23",
+    "description": "Between Perillo Eatery"
+  },
+  {
+    "entrance_id": 13,
+    "node_id": "node_ex_x1",
+    "description": "Wet Market Middle"
+  },
+  {
+    "entrance_id": 14,
+    "node_id": "node_ex_x2",
+    "description": "Intersection between Wet, Dry, and Rice Market"
+  }
+]

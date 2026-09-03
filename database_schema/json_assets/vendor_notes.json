@@ -1,0 +1,1770 @@
+[
+  {
+    "id": 1,
+    "business_name": "2 CEE'S STORE",
+    "stall_id": "id_1",
+    "stall_number": "STALL #15",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #15 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 3,
+    "business_name": "4E'S LLOBET MEATSHOP CORPORATION",
+    "stall_id": "id_3",
+    "stall_number": "STALL #1",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #1 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 5,
+    "business_name": "ABASOLO DRESSMAKING",
+    "stall_id": "id_5",
+    "stall_number": "STALL NO. 12A",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL NO. 12A NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Tailoring & Dress Shop",
+    "search_categories": [
+      "Tailoring & Dress Shop"
+    ],
+    "map_color_hex": "#26C6DA"
+  },
+  {
+    "id": 9,
+    "business_name": "ADELFA F. ADONES JEWELRY AND WATCH REPAIR SHOP I",
+    "stall_id": "id_9",
+    "stall_number": "STALL #19A",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #19A MARKET SPACE AT NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Specialty Repair",
+    "search_categories": [
+      "Specialty Repair"
+    ],
+    "map_color_hex": "#5C6BC0"
+  },
+  {
+    "id": 10,
+    "business_name": "ADVZ FISH RETAILING",
+    "stall_id": "id_10",
+    "stall_number": "STALL #48",
+    "building_or_section": "FISH SECTION",
+    "address": "STALL #48 FISH SECTION MARKET SITE BAGUMBAYAN",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 14,
+    "business_name": "AL-SOR OLOYA'S BAKERY",
+    "stall_id": "id_14",
+    "stall_number": "STALL #16",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #16 CARENDERIA MARKET SITE BAGUMBAYAN",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 15,
+    "business_name": "ALEXANDER C. PORCALLA DRYGOODS II",
+    "stall_id": "id_15",
+    "stall_number": "STALL #9",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #9 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 16,
+    "business_name": "ALEXANDER C. PORCALLA DRYGOODS III",
+    "stall_id": "id_16",
+    "stall_number": "STALL #10",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #10 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 22,
+    "business_name": "ARJAYBUENAVENTE MEAT STORE",
+    "stall_id": "id_22",
+    "stall_number": "STALL #7",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #7 MEAT SECTION MARKET SITE BAGUMBAYAN",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 23,
+    "business_name": "ARLES ARMARIO STORE",
+    "stall_id": "id_23",
+    "stall_number": "STALL #9",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #9 EXTENSION V MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari",
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 24,
+    "business_name": "ARMANDO N. ZARAGOSA MEAT SHOP",
+    "stall_id": "id_24",
+    "stall_number": "STALL #26",
+    "building_or_section": "BUILDING I",
+    "address": "STALL #26 BUILDING I MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 31,
+    "business_name": "B. C. GARCE DRYGOODS STORE 111",
+    "stall_id": "id_31",
+    "stall_number": "STALL #10",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #10 NEW CAMARIN MARKET SITE LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 34,
+    "business_name": "B.C. GARCE DRYGOODS STORE I",
+    "stall_id": "id_34",
+    "stall_number": "STALL #8",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #8 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 35,
+    "business_name": "B.C. GARCE DRYGOODS STORE II",
+    "stall_id": "id_35",
+    "stall_number": "STALL #9",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #9 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 36,
+    "business_name": "BELMA RAFALLO STORE",
+    "stall_id": "id_36",
+    "stall_number": "STALL #26",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #26 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 37,
+    "business_name": "BORROMEO RICE & PALAY TRADING",
+    "stall_id": "id_37",
+    "stall_number": "STALL #20",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #20 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 38,
+    "business_name": "BORROMEO RICE AND PALAY TRADING I",
+    "stall_id": "id_38",
+    "stall_number": "STALL NO. 19",
+    "building_or_section": "BUILDING II",
+    "address": "STALL NO. 19 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 39,
+    "business_name": "BORROMEO RICE RETAILING",
+    "stall_id": "id_39",
+    "stall_number": "STALL #28",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #28 BUILDING III MARKET SITE BAGUMBAYAN",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 40,
+    "business_name": "BUDDY CELIS MEAT VENDOR",
+    "stall_id": "id_40",
+    "stall_number": "STALL #1",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #1 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 41.1,
+    "business_name": "BUDDY EMBIDO'S MEATSHOP",
+    "stall_id": "id_41.1",
+    "stall_number": "STALL#1",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL#1 EXTENSION I MARKET SITE BAGUMBAYAN",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 41.2,
+    "business_name": "BUDDY EMBIDO'S MEATSHOP",
+    "stall_id": "id_41.2",
+    "stall_number": "STALL#1",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL#1 EXTENSION I MARKET SITE BAGUMBAYAN",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 44,
+    "business_name": "C. MARZO DRYGOODS STORE",
+    "stall_id": "id_44",
+    "stall_number": "STALL #6",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #6 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 45,
+    "business_name": "C. MARZO DRYGOODS STORE - EXTENSION",
+    "stall_id": "id_45",
+    "stall_number": "STALL #1",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #1 NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 47,
+    "business_name": "C. TORRES STORE",
+    "stall_id": "id_47",
+    "stall_number": "STALL #13",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #13 EXTENSION I MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 49,
+    "business_name": "CAMBUSA DRYGOODS",
+    "stall_id": "id_49",
+    "stall_number": "STALL #7",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #7 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 50,
+    "business_name": "CATHERINE PERALTA SARI-SARI STORE",
+    "stall_id": "id_50",
+    "stall_number": "STALL #5",
+    "building_or_section": "EXTENSION IX",
+    "address": "STALL #5 EXTENSION IX MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 55,
+    "business_name": "CHRISTABELLE DELOSSANTOS MEAT SHOP",
+    "stall_id": "id_55",
+    "stall_number": "STALL #8",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #8 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 58,
+    "business_name": "COOL CORNER SARI-SARI STORE",
+    "stall_id": "id_58",
+    "stall_number": "STALL #8",
+    "building_or_section": "BUILDING IV",
+    "address": "STALL #8 BUILDING IV MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 60,
+    "business_name": "CRISTINA A. ROSCO STORE I",
+    "stall_id": "id_60",
+    "stall_number": "STALL #17",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #17 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 61,
+    "business_name": "CRISTINA A. ROSCO STORE II",
+    "stall_id": "id_61",
+    "stall_number": "STALL #18",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #18 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 62,
+    "business_name": "CRISTOBAL DELGADO MEAT STALL",
+    "stall_id": "id_62",
+    "stall_number": "STALL #22",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #22 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 64,
+    "business_name": "D.N. RELENTE MEAT VENDOR",
+    "stall_id": "id_64",
+    "stall_number": "STALL #13",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #13 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 65,
+    "business_name": "D.R.P. SARI-SARI STORE",
+    "stall_id": "id_65",
+    "stall_number": "STALL #18",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #18 EXTENSION V MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Sari Sari",
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 66,
+    "business_name": "DADAY SARI-SARI STORE",
+    "stall_id": "id_66",
+    "stall_number": "STALL #8",
+    "building_or_section": "BUILDING VIII",
+    "address": "STALL #8 BUILDING VIII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 67,
+    "business_name": "DANILO A. CENITA'S DRY GOODS TRADING I",
+    "stall_id": "id_67",
+    "stall_number": "STALL #8",
+    "building_or_section": "EXTENSION VIII",
+    "address": "STALL #8 EXTENSION VIII MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 68,
+    "business_name": "DANILO A. CENITA'S DRY GOODS TRADING II",
+    "stall_id": "id_68",
+    "stall_number": "STALL #9",
+    "building_or_section": "EXTENSION IX",
+    "address": "STALL #9 EXTENSION IX MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 69,
+    "business_name": "DHAY SARI-SARI STORE",
+    "stall_id": "id_69",
+    "stall_number": "STALL#12",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL#12 EXTENSION V OLD CAMARIN, MARKET SITE BAGUMBAYAN",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 72,
+    "business_name": "EMELITO BUENAVENTE MEAT STORE",
+    "stall_id": "id_72",
+    "stall_number": "STALL #7",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #7 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 77,
+    "business_name": "FINN'S SARI-SARI STORE",
+    "stall_id": "id_77",
+    "stall_number": "STALL # 21",
+    "building_or_section": "BUILDING II",
+    "address": "STALL # 21 BUILDING II MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 78,
+    "business_name": "FLAVIRINA SARI SARI STORE",
+    "stall_id": "id_78",
+    "stall_number": "STALL#13",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL#13 EXTENSION V MARKET SITE BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 79,
+    "business_name": "FP SALOMON STORE",
+    "stall_id": "id_79",
+    "stall_number": "STALL #1",
+    "building_or_section": "EXTENSION X",
+    "address": "STALL #1 EXTENSION X MARKET SITE LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Sari Sari",
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 80,
+    "business_name": "FRANCISCO CARINDERIA I",
+    "stall_id": "id_80",
+    "stall_number": "STALL #14",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #14 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 81,
+    "business_name": "FRANCISCO CARINDERIA II",
+    "stall_id": "id_81",
+    "stall_number": "STALL #15",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #15 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 82,
+    "business_name": "G&A MEAT SHOP",
+    "stall_id": "id_82",
+    "stall_number": "STALL #15",
+    "building_or_section": "OLD CAMARIN",
+    "address": "STALL #15 OLD CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 83,
+    "business_name": "G. ASUNCION SARI-SARI STORE",
+    "stall_id": "id_83",
+    "stall_number": "STALL #12",
+    "building_or_section": "BUILDING IV",
+    "address": "STALL #12 BUILDING IV MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 84,
+    "business_name": "GEMMA PABET DRYGOODS STORE I",
+    "stall_id": "id_84",
+    "stall_number": "STALL#4",
+    "building_or_section": "BUILDING II",
+    "address": "STALL#4 BUILDING II MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 87,
+    "business_name": "GEMMA PABET MEAT VENDOR",
+    "stall_id": "id_87",
+    "stall_number": "STALL #5",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #5 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 88,
+    "business_name": "GEMMA TALAM SARI-SARI STORE",
+    "stall_id": "id_88",
+    "stall_number": "STALL #5",
+    "building_or_section": "BUILDING V",
+    "address": "STALL #5 BUILDING V MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Sari Sari",
+      "Ingredients",
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 90,
+    "business_name": "GLENDY OCIANA VEGETABLE STALL",
+    "stall_id": "id_90",
+    "stall_number": "STALL #15",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #15 EXTENSION I MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari",
+      "Produce"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 91,
+    "business_name": "GLOH EATERY",
+    "stall_id": "id_91",
+    "stall_number": "STALL #4",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #4 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 92,
+    "business_name": "GODILLY JOY STORE",
+    "stall_id": "id_92",
+    "stall_number": "STALL #18",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #18 EXTENSION I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 93,
+    "business_name": "GODILLY JOY STORE I",
+    "stall_id": "id_93",
+    "stall_number": "STALL #17",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #17 EXTENSION I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 94,
+    "business_name": "GRAZIELE BRIZUELA'S EATERY 1",
+    "stall_id": "id_94",
+    "stall_number": "STALL #13",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #13 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 95,
+    "business_name": "GRAZIELE BRIZUELA'S EATERY 11",
+    "stall_id": "id_95",
+    "stall_number": "STALL #12",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #12 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 96,
+    "business_name": "GUANZON RICE RETAILING",
+    "stall_id": "id_96",
+    "stall_number": "STALL #24",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #24 BUILDING III MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 101,
+    "business_name": "JACQUILINE GONZALES STORE 1",
+    "stall_id": "id_101",
+    "stall_number": "STALL #4",
+    "building_or_section": "BUILDING VI",
+    "address": "STALL #4 BUILDING VI MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 102,
+    "business_name": "JACQUILINE GONZALES STORE 2",
+    "stall_id": "id_102",
+    "stall_number": "STALL #5",
+    "building_or_section": "BUILDING VI",
+    "address": "STALL #5 BUILDING VI MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 105,
+    "business_name": "JHOANNA ROSCO STORE 11",
+    "stall_id": "id_105",
+    "stall_number": "STALL #2",
+    "building_or_section": "EXTENSION IV",
+    "address": "STALL #2 EXTENSION IV MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 107,
+    "business_name": "JO PATINGO SARI-SARI STORE",
+    "stall_id": "id_107",
+    "stall_number": "STALL #16",
+    "building_or_section": "BUILDING V",
+    "address": "STALL #16 BUILDING V MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients",
+      "Produce"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 108,
+    "business_name": "JO PATINGO SARI-SARI STORE I",
+    "stall_id": "id_108",
+    "stall_number": "STALL #4",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #4 EXTENSION V MARKET SITE BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Sari Sari",
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 109,
+    "business_name": "JOCILYN ZARAGOSA MEAT STALL",
+    "stall_id": "id_109",
+    "stall_number": "STALL #14",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #14 MEAT SECTION MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 110,
+    "business_name": "JOSE LAURETA STORE",
+    "stall_id": "id_110",
+    "stall_number": "STALL #3",
+    "building_or_section": "EXTENSION IX",
+    "address": "STALL #3 EXTENSION IX MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 113,
+    "business_name": "JP PASCUAL MEAT VENDOR",
+    "stall_id": "id_113",
+    "stall_number": "STALL #11",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #11 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 114,
+    "business_name": "JP REGALADO MEAT SHOP",
+    "stall_id": "id_114",
+    "stall_number": "STALL #18",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #18 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 116,
+    "business_name": "JUGALBOT SARI-SARI STORE",
+    "stall_id": "id_116",
+    "stall_number": "STALL 16",
+    "building_or_section": "BUILDING II",
+    "address": "STALL 16 BUILDING II MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Sari Sari",
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 118,
+    "business_name": "KREZ TAILORING & DRESS SHOP",
+    "stall_id": "id_118",
+    "stall_number": "STALL #23",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #23 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Tailoring & Dress Shop",
+    "search_categories": [
+      "Tailoring & Dress Shop"
+    ],
+    "map_color_hex": "#26C6DA"
+  },
+  {
+    "id": 119,
+    "business_name": "KYLA AND KYLE GENERAL MERCHANDISE",
+    "stall_id": "id_119",
+    "stall_number": "STALL#19",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL#19 NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 121,
+    "business_name": "KYLA AND KYLE GENERAL MERCHANDISE II",
+    "stall_id": "id_121",
+    "stall_number": "STALL#17",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL#17 NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 122,
+    "business_name": "L. PIMENTEL FISH STALL",
+    "stall_id": "id_122",
+    "stall_number": "STALL #20",
+    "building_or_section": "FISH SECTION",
+    "address": "STALL #20 FISH SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 124,
+    "business_name": "LAURENZ & MARY SARI-SARI STORE",
+    "stall_id": "id_124",
+    "stall_number": "STALL #22",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #22 BUILDING II MARKET SITE, BAGUMBAYAN LIGAO CITY",
+    "primary_category": "Wholesale Snacks & Repacked Supplies",
+    "search_categories": [
+      "Sari Sari",
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8E24AA"
+  },
+  {
+    "id": 126,
+    "business_name": "LEANNE AND MARIA SARI SARI STORE",
+    "stall_id": "id_126",
+    "stall_number": "STALL #8",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #8 EXTENSION V MARKET SITE BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 131,
+    "business_name": "LIAN'S SARI-SARI STORE",
+    "stall_id": "id_131",
+    "stall_number": "STALL # 5",
+    "building_or_section": "BUILDING VII",
+    "address": "STALL # 5 BUILDING VII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 132,
+    "business_name": "LIAN'S SARI-SARI STORE I",
+    "stall_id": "id_132",
+    "stall_number": "STALL# 7",
+    "building_or_section": "BUILDING VII",
+    "address": "STALL# 7 BUILDING VII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 135,
+    "business_name": "LOIDA'S DRESS SHOP",
+    "stall_id": "id_135",
+    "stall_number": "STALL #13",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #13 NEW CAMARIN MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Tailoring & Dress Shop",
+    "search_categories": [
+      "Tailoring & Dress Shop"
+    ],
+    "map_color_hex": "#26C6DA"
+  },
+  {
+    "id": 136,
+    "business_name": "LUCAS VARIETY STORE",
+    "stall_id": "id_136",
+    "stall_number": "STALL #1",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #1 MARKET SPACE AT NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Rice & Grains",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 137,
+    "business_name": "LYN-LYN RTW STORE",
+    "stall_id": "id_137",
+    "stall_number": "STALL #21",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #21 NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 138,
+    "business_name": "LYN-LYN RTW STORE 1",
+    "stall_id": "id_138",
+    "stall_number": "STALL #22",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #22 NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 143,
+    "business_name": "M. BELLO DRIED FISH STORE",
+    "stall_id": "id_143",
+    "stall_number": "STALL #1",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #1 EXTENSION V MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 144,
+    "business_name": "M. PALMA COCONUT STORE",
+    "stall_id": "id_144",
+    "stall_number": "STALL NO. 1",
+    "building_or_section": "EXTENSION II",
+    "address": "STALL NO. 1 EXTENSION II MARKET SITE BAGUMBAYAN",
+    "primary_category": "Coconut & Gata",
+    "search_categories": [
+      "Coconut & Gata"
+    ],
+    "map_color_hex": "#A1887F"
+  },
+  {
+    "id": 146,
+    "business_name": "MALOU AND PRINCESS STORE",
+    "stall_id": "id_146",
+    "stall_number": "STALL #1",
+    "building_or_section": "EXTENSION VIII",
+    "address": "STALL #1 EXTENSION VIII MARKET SITE LIGAO CITY",
+    "primary_category": "Wholesale Snacks & Repacked Supplies",
+    "search_categories": [
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8E24AA"
+  },
+  {
+    "id": 154,
+    "business_name": "MARILOU M GUANZON STORE",
+    "stall_id": "id_154",
+    "stall_number": "STALL #36",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #36 BUILDING III MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Rice & Grains",
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 155,
+    "business_name": "MARILYN LORIA STORE",
+    "stall_id": "id_155",
+    "stall_number": "STALL#25",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL#25 EXTENSION I MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Sari Sari",
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 156,
+    "business_name": "MARILYN MECAYER MARTIN FISH VENDOR",
+    "stall_id": "id_156",
+    "stall_number": "STALL #44",
+    "building_or_section": "FISH SECTION",
+    "address": "STALL #44 FISH SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 157,
+    "business_name": "MARIXON FRUITS AND VEGETABLES STORE",
+    "stall_id": "id_157",
+    "stall_number": "STALL #3",
+    "building_or_section": "BUILDING VIII",
+    "address": "STALL #3 BUILDING VIII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 158,
+    "business_name": "MARQUEZ DRYGOODS",
+    "stall_id": "id_158",
+    "stall_number": "STALL #20",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #20 NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 160,
+    "business_name": "MEDINA'S EATERY",
+    "stall_id": "id_160",
+    "stall_number": "STALL #3",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #3 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 164,
+    "business_name": "MONTHEL SARI - SARI STORE 111 - A",
+    "stall_id": "id_164",
+    "stall_number": "STALL #5",
+    "building_or_section": "EXTENSION VI",
+    "address": "STALL #5 EXTENSION VI MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Wholesale Snacks & Repacked Supplies",
+    "search_categories": [
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8E24AA"
+  },
+  {
+    "id": 165,
+    "business_name": "MONTHEL SARI-SARI STORE I",
+    "stall_id": "id_165",
+    "stall_number": "STALL #6",
+    "building_or_section": "EXTENSION VI",
+    "address": "STALL #6 EXTENSION VI MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Wholesale Snacks & Repacked Supplies",
+    "search_categories": [
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8E24AA"
+  },
+  {
+    "id": 166,
+    "business_name": "MONTHEL SARI-SARI STORE II",
+    "stall_id": "id_166",
+    "stall_number": "STALL #1",
+    "building_or_section": "BUILDING VI",
+    "address": "STALL #1 BUILDING VI MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 167,
+    "business_name": "N. TOPASI DRESSED CHICKEN STORE 1",
+    "stall_id": "id_167",
+    "stall_number": "STALL #5",
+    "building_or_section": "OLD CAMARIN",
+    "address": "STALL #5 OLD CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Mixed Meat",
+    "search_categories": [
+      "Mixed Meat"
+    ],
+    "map_color_hex": "#C2185B"
+  },
+  {
+    "id": 168,
+    "business_name": "NACOR STORE",
+    "stall_id": "id_168",
+    "stall_number": "STALL #13",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #13 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 169,
+    "business_name": "NACOR STORE 1",
+    "stall_id": "id_169",
+    "stall_number": "STALL #2",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #2 BUILDING II MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 172,
+    "business_name": "NELSON REBUTIACO VEGETABLE STALL",
+    "stall_id": "id_172",
+    "stall_number": "STALL #2",
+    "building_or_section": "EXTENSION III",
+    "address": "STALL #2 EXTENSION III MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 176,
+    "business_name": "NOELMA BEAUTY SALON",
+    "stall_id": "id_176",
+    "stall_number": "STALL #14",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #14 NEW CAMARIN MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Salon & Beauty",
+    "search_categories": [
+      "Salon & Beauty"
+    ],
+    "map_color_hex": "#BA68C8"
+  },
+  {
+    "id": 177,
+    "business_name": "NORA DRY GOODS STORE",
+    "stall_id": "id_177",
+    "stall_number": "STALL #24",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #24 NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Thrift Apparel",
+    "search_categories": [
+      "Thrift Apparel"
+    ],
+    "map_color_hex": "#3949AB"
+  },
+  {
+    "id": 187,
+    "business_name": "PAPAY'S MEAT SHOP",
+    "stall_id": "id_187",
+    "stall_number": "STALL #5",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #5 EXTENSION I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Mixed Meat",
+    "search_categories": [
+      "Meat",
+      "Mixed Meat"
+    ],
+    "map_color_hex": "#C2185B"
+  },
+  {
+    "id": 189,
+    "business_name": "PAYOYO-LOPEZ STORE",
+    "stall_id": "id_189",
+    "stall_number": "STALL #8",
+    "building_or_section": "BUILDING I",
+    "address": "STALL #8 BUILDING I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 190,
+    "business_name": "PAYOYO-LOPEZ STORE II",
+    "stall_id": "id_190",
+    "stall_number": "STALL #9",
+    "building_or_section": "BUILDING I",
+    "address": "STALL #9 BUILDING I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 191,
+    "business_name": "PAYOYO-LOPEZ STORE III",
+    "stall_id": "id_191",
+    "stall_number": "STALL #10",
+    "building_or_section": "BUILDING I",
+    "address": "STALL #10 BUILDING I MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 192,
+    "business_name": "PERAZ SARI-SARI STORE",
+    "stall_id": "id_192",
+    "stall_number": "STALL #27",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #27 BUILDING III MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari",
+      "Wholesale Snacks & Repacked Supplies"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 193,
+    "business_name": "PERILLO'S EATERY 1",
+    "stall_id": "id_193",
+    "stall_number": "STALL #7",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #7 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 194,
+    "business_name": "PERILLO'S EATERY 11",
+    "stall_id": "id_194",
+    "stall_number": "STALL #8",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #8 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 195,
+    "business_name": "PERILLO'S EATERY 111",
+    "stall_id": "id_195",
+    "stall_number": "STALL #10",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #10 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 196,
+    "business_name": "PONTERES DRIED FISH STORE",
+    "stall_id": "id_196",
+    "stall_number": "STALL #7",
+    "building_or_section": "BUILDING VIII",
+    "address": "STALL #7 BUILDING VIII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 199,
+    "business_name": "PRECIOUS OFFICE AND SCHOOL SUPPLIES",
+    "stall_id": "id_199",
+    "stall_number": "STALL #5",
+    "building_or_section": "BUILDING VIII",
+    "address": "STALL #5 BUILDING VIII MARKET SITE BAGUMBAYAN",
+    "primary_category": "Miscellaneous",
+    "search_categories": [
+      "Miscellaneous"
+    ],
+    "map_color_hex": "#4DB6AC"
+  },
+  {
+    "id": 202,
+    "business_name": "R. LLOBIT RICE GRINDING SERVICES",
+    "stall_id": "id_202",
+    "stall_number": "STALL #5",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL #5 EXTENSION V MARKET SITE BAGUMBAYAN",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients",
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 208,
+    "business_name": "RED ROS STORE",
+    "stall_id": "id_208",
+    "stall_number": "#5",
+    "building_or_section": "BUILDING I",
+    "address": "#5 BUILDING I MARKET SITE BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 211,
+    "business_name": "ROBERTO PANCIPANE RICE DEALER/RETAILER",
+    "stall_id": "id_211",
+    "stall_number": "STALL #25",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #25 BUILDING III MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 212,
+    "business_name": "RODEL MORATALLA'S EATERY",
+    "stall_id": "id_212",
+    "stall_number": "STALL #5",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #5 CARENDERIA MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 213,
+    "business_name": "RODEL MORATALLA'S EATERY I",
+    "stall_id": "id_213",
+    "stall_number": "STALL #6",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #6 CARENDERIA MARKET SITE BAGUMBAYAN",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 218,
+    "business_name": "ROMEO VILLANUEVA FISH STALL",
+    "stall_id": "id_218",
+    "stall_number": "STALL #30",
+    "building_or_section": "FISH SECTION",
+    "address": "STALL #30 FISH SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 219,
+    "business_name": "ROMMEL LOPEZ FISH STALL",
+    "stall_id": "id_219",
+    "stall_number": "STALL #43",
+    "building_or_section": "FISH SECTION",
+    "address": "STALL #43 FISH SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 221,
+    "business_name": "ROSEMARY PARAISO STORE 1",
+    "stall_id": "id_221",
+    "stall_number": "11",
+    "building_or_section": "BUILDING II",
+    "address": "11 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 222,
+    "business_name": "ROSEMARY PARAISO STORE 11",
+    "stall_id": "id_222",
+    "stall_number": "STALL#23",
+    "building_or_section": "BUILDING III",
+    "address": "STALL#23 BUILDING III MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Ingredients",
+    "search_categories": [
+      "Ingredients"
+    ],
+    "map_color_hex": "#9575CD"
+  },
+  {
+    "id": 223,
+    "business_name": "RYANELLE'S DRESSED CHICKEN AND MEAT SHOP",
+    "stall_id": "id_223",
+    "stall_number": "STALL #1",
+    "building_or_section": "OLD CAMARIN",
+    "address": "STALL #1 OLD CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Mixed Meat",
+    "search_categories": [
+      "Mixed Meat"
+    ],
+    "map_color_hex": "#C2185B"
+  },
+  {
+    "id": 225,
+    "business_name": "SACABON SARI-SARI STORE",
+    "stall_id": "id_225",
+    "stall_number": "STALL#17",
+    "building_or_section": "EXTENSION V",
+    "address": "STALL#17 EXTENSION V MARKET SITE BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 226,
+    "business_name": "SANONE MEAT SHOP",
+    "stall_id": "id_226",
+    "stall_number": "STALL #32",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #32 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 227,
+    "business_name": "SEAN'S FISH RETAILING",
+    "stall_id": "id_227",
+    "stall_number": "STALL #2",
+    "building_or_section": "OLD CAMARIN",
+    "address": "STALL #2 OLD CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Fish",
+    "search_categories": [
+      "Fish"
+    ],
+    "map_color_hex": "#64B5F6"
+  },
+  {
+    "id": 231,
+    "business_name": "SINSON EATERY I",
+    "stall_id": "id_231",
+    "stall_number": "STALL #1",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #1 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 232,
+    "business_name": "SINSON EATERY II",
+    "stall_id": "id_232",
+    "stall_number": "STALL #2",
+    "building_or_section": "CARENDERIA",
+    "address": "STALL #2 CARENDERIA MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Eateries",
+    "search_categories": [
+      "Eateries"
+    ],
+    "map_color_hex": "#FF8A65"
+  },
+  {
+    "id": 235,
+    "business_name": "SUAREZ MEAT SHOP",
+    "stall_id": "id_235",
+    "stall_number": "STALL #10",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #10 MEAT SECTION MARKET SITE BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 237,
+    "business_name": "TCBAUSTISTA SARI-SARI STORE",
+    "stall_id": "id_237",
+    "stall_number": "STALL #34",
+    "building_or_section": "BUILDING III",
+    "address": "STALL #34 BUILDING III MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 238,
+    "business_name": "TEODOSE ZARAGOSA MEAT STALL",
+    "stall_id": "id_238",
+    "stall_number": "STALL #28",
+    "building_or_section": "MEAT SECTION",
+    "address": "STALL #28 MEAT SECTION MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Meat",
+    "search_categories": [
+      "Meat"
+    ],
+    "map_color_hex": "#E57373"
+  },
+  {
+    "id": 240,
+    "business_name": "THELMA R. ROS SARI SARI STORE",
+    "stall_id": "id_240",
+    "stall_number": "STALL #11",
+    "building_or_section": "BUILDING IV",
+    "address": "STALL #11 BUILDING IV MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 246,
+    "business_name": "TOUCHES WELLNESS SPA",
+    "stall_id": "id_246",
+    "stall_number": "STALL#25",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL#25 NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Wellness & Spa",
+    "search_categories": [
+      "Wellness & Spa"
+    ],
+    "map_color_hex": "#F06292"
+  },
+  {
+    "id": 247,
+    "business_name": "TOY & ME SARI-SARI STORE II",
+    "stall_id": "id_247",
+    "stall_number": "STALL #5",
+    "building_or_section": "BUILDING IV",
+    "address": "STALL #5 BUILDING IV MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 248,
+    "business_name": "TOY AND ME STORE I",
+    "stall_id": "id_248",
+    "stall_number": "STALL #6",
+    "building_or_section": "BUILDING IV",
+    "address": "STALL #6 BUILDING IV MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 249,
+    "business_name": "TRIPLE J DRY GOODS STORE",
+    "stall_id": "id_249",
+    "stall_number": "STALL #1",
+    "building_or_section": "NEW CAMARIN",
+    "address": "STALL #1 NEW CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Dry Goods",
+    "search_categories": [
+      "Dry Goods"
+    ],
+    "map_color_hex": "#FFD54F"
+  },
+  {
+    "id": 252,
+    "business_name": "TRISHATJ STORE",
+    "stall_id": "id_252",
+    "stall_number": "STALL #16",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL #16 EXTENSION I MARKET SITE BAGUMBAYAN",
+    "primary_category": "Sari Sari",
+    "search_categories": [
+      "Sari Sari"
+    ],
+    "map_color_hex": "#8BC34A"
+  },
+  {
+    "id": 253,
+    "business_name": "TWIN'S DRESSED CHICKEN STORE",
+    "stall_id": "id_253",
+    "stall_number": "STALL#38",
+    "building_or_section": "OLD CAMARIN",
+    "address": "STALL#38 OLD CAMARIN MARKET SITE BAGUMBAYAN",
+    "primary_category": "Mixed Meat",
+    "search_categories": [
+      "Mixed Meat"
+    ],
+    "map_color_hex": "#C2185B"
+  },
+  {
+    "id": 257,
+    "business_name": "W. GUERRERO RICE STORE",
+    "stall_id": "id_257",
+    "stall_number": "STALL #14",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #14 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 257.2,
+    "business_name": "W. GUERRERO RICE STORE",
+    "stall_id": "id_257.2",
+    "stall_number": "STALL #14",
+    "building_or_section": "BUILDING II",
+    "address": "STALL #14 BUILDING II MARKET SITE, BAGUMBAYAN, LIGAO CITY",
+    "primary_category": "Rice & Grains",
+    "search_categories": [
+      "Rice & Grains"
+    ],
+    "map_color_hex": "#E5A93C"
+  },
+  {
+    "id": 259,
+    "business_name": "YAN'S SARI-SARI STORE",
+    "stall_id": "id_259",
+    "stall_number": "STALL 1",
+    "building_or_section": "BUILDING VII",
+    "address": "STALL 1 BUILDING VII MARKET SITE, BAGUMBAYAN",
+    "primary_category": "Produce",
+    "search_categories": [
+      "Produce",
+      "Sari Sari"
+    ],
+    "map_color_hex": "#4CAF50"
+  },
+  {
+    "id": 261,
+    "business_name": "YHESHA'S SARI-SARI STORE",
+    "stall_id": "id_261",
+    "stall_number": "STALL#4",
+    "building_or_section": "EXTENSION I",
+    "address": "STALL#4 EXTENSION I MARKET SITE BAGUMBAYAN",
+    "primary_category": "Mixed Meat",
+    "search_categories": [
+      "Sari Sari",
+      "Meat",
+      "Mixed Meat"
+    ],
+    "map_color_hex": "#C2185B"
+  }
+]

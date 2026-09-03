@@ -1,0 +1,1556 @@
+/* ==========================================================================
+   MerkadoGo Web — "Civic Craft & Flat Utility" Design System
+   Source: UI-UX Design System.md (Ported from Flutter theme tokens)
+   Standard: ISO/IEC 25010:2023
+   Strict Guardrails: NO GRADIENTS, NO DROP SHADOWS, 1px hairline borders
+   ========================================================================== */
+
+:root {
+  /* --- 1. Core Brand & UI Color Tokens (app_colors.dart) --- */
+  --color-primary: #1B5E20;         /* Forest Green - Primary CTA, active chips, entrance markers */
+  --color-primary-light: #E8F5E9;   /* Soft Mint - Active chip background, highlight tints */
+  --color-error: #E53935;           /* Crimson Red - "Go" wordmark, destination pin, clear route */
+  --color-canvas: #F7F7F5;          /* Warm Off-White - Canvas, page & map ground */
+  --color-surface: #FFFFFF;         /* Pure White - Floating search bar, stall detail cards */
+  --color-surface-dim: #F1F8E9;     /* Soft Sage - Unselected details container, section fills */
+  --color-ink: #1A241A;             /* Deep Charcoal - Headings, vendor business names */
+  --color-ink-muted: #667066;       /* Slate Gray - Stall numbers, subtitles, distances */
+  --color-ink-subtle: #9E9E9E;      /* Light Gray - Placeholders, disabled states */
+  --color-border: #E2E8E2;          /* Hairline Gray - 1px flat perimeter borders */
+
+  /* --- 2. Canonical 18-Zone SVG Map Palette --- */
+  --zone-produce-fill: #4CAF50;
+  --zone-produce-stroke: #2E7D32;
+  
+  --zone-meat-fill: #E57373;
+  --zone-meat-stroke: #C62828;
+  
+  --zone-mixed-meat-fill: #C2185B;
+  --zone-mixed-meat-stroke: #880E4F;
+  
+  --zone-fish-fill: #64B5F6;
+  --zone-fish-stroke: #1565C0;
+  
+  --zone-dry-goods-fill: #FFD54F;
+  --zone-dry-goods-stroke: #FF8F00;
+  
+  --zone-rice-grains-fill: #E5A93C;
+  --zone-rice-grains-stroke: #B27300;
+  
+  --zone-thrift-apparel-fill: #3949AB;
+  --zone-thrift-apparel-stroke: #1A237E;
+  
+  --zone-tailoring-fill: #26C6DA;
+  --zone-tailoring-stroke: #00838F;
+  
+  --zone-eateries-fill: #FF8A65;
+  --zone-eateries-stroke: #D84315;
+  
+  --zone-sari-sari-fill: #8BC34A;
+  --zone-sari-sari-stroke: #33691E;
+  
+  --zone-wholesale-snacks-fill: #8E24AA;
+  --zone-wholesale-snacks-stroke: #4A148C;
+  
+  --zone-ingredients-fill: #9575CD;
+  --zone-ingredients-stroke: #4527A0;
+  
+  --zone-coconut-gata-fill: #A1887F;
+  --zone-coconut-gata-stroke: #4E342E;
+  
+  --zone-specialty-repair-fill: #5C6BC0;
+  --zone-specialty-repair-stroke: #283593;
+  
+  --zone-wellness-spa-fill: #F06292;
+  --zone-wellness-spa-stroke: #AD1457;
+  
+  --zone-salon-beauty-fill: #BA68C8;
+  --zone-salon-beauty-stroke: #7B1FA2;
+  
+  --zone-miscellaneous-fill: #4DB6AC;
+  --zone-miscellaneous-stroke: #00695C;
+  
+  --zone-unassigned-fill: #E2E8F0;
+  --zone-unassigned-stroke: #94A3B8;
+
+  /* --- Map Infrastructure Palette --- */
+  --infra-pathway-fill: #E0E0E0;
+  --infra-pathway-stroke: #9E9E9E;
+  
+  --infra-building-fill: #B0BEC5;
+  --infra-building-stroke: #546E7A;
+  
+  --infra-bridge-fill: #78909C;
+  --infra-bridge-stroke: #455A64;
+  
+  --infra-river-fill: #4DD0E1;
+  --infra-river-stroke: #00838F;
+
+  /* --- 3. Typography Tokens (app_text_styles.dart) --- */
+  --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* --- 4. Spacing Scale (app_spacing.dart - 4px Geometric Grid) --- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  /* --- 5. Radius Tokens --- */
+  --radius-card: 14px;
+  --radius-chip: 20px;
+  --radius-btn: 12px;
+  --radius-input: 12px;
+  --radius-sm: 6px;
+
+  /* --- 6. Touch & Component Sizing --- */
+  --hitbox-min: 44px;
+  --header-height: 52px;
+  --search-bar-height: 48px;
+}
+
+/* ==========================================================================
+   CSS Reset & App Shell Container
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Mobile Chrome sizes 100vh to the URL-bar-hidden viewport, pushing
+     bottom-anchored UI off-screen — dvh tracks the visible viewport */
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+/* ==========================================================================
+   Typography Utilities
+   ========================================================================== */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.title-kiosk {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.3px;
+}
+
+.title-section {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.vendor-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.3;
+}
+
+.text-meta {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-ink-muted);
+}
+
+.text-subtle {
+  font-size: 12px;
+  color: var(--color-ink-subtle);
+}
+
+/* Two-Tone Brand Wordmark */
+.brand-merkado {
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-weight: 800;
+}
+
+.brand-go {
+  color: var(--color-error);
+  font-family: var(--font-body);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   Map Viewport (Full Screen Canvas)
+   ========================================================================== */
+#map-viewport {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Ground matches the SVG ground rect: any exposed canvas margin or
+     transient letterbox reads as uniform map ground, never mismatched white */
+  background-color: var(--color-canvas);
+  z-index: 1;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+#map-viewport:active {
+  cursor: grabbing;
+}
+
+#map-viewport svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  pointer-events: auto;
+}
+
+/* Map Loading Overlay */
+.map-loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--color-ink-muted);
+  font-weight: 500;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Top Floating Overlay (Header, Search, Chips)
+   ========================================================================== */
+.top-overlay {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 560px;
+  pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  .top-overlay {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+}
+
+.top-overlay > * {
+  pointer-events: auto;
+}
+
+/* Header Brand Bar */
+.header-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  height: var(--header-height);
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.brand-titles {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.brand-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.kiosk-badge {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+}
+
+.market-datetime-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: var(--color-surface-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.datetime-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.datetime-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  line-height: 1.15;
+}
+
+.datetime-time {
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.2px;
+}
+
+.datetime-date {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+/* Search Bar & Container (Thinner, Zero Padding Bloat) */
+.search-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  transition: border-color 0.16s ease;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 10px;
+  gap: 8px;
+}
+
+.search-icon {
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+}
+
+#search-input {
+  flex: 1;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-ink);
+  min-width: 0;
+}
+
+#search-input::placeholder {
+  color: var(--color-ink-subtle);
+  font-weight: 400;
+}
+
+.btn-clear {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-clear:hover {
+  color: var(--color-ink);
+}
+
+.search-divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Category Filter Button Inside Search Bar */
+.btn-search-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 8px;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.btn-search-category:hover {
+  background-color: var(--color-surface-dim);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-search-category.btn-search-category--active {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.category-chevron {
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+.btn-search-category[aria-expanded="true"] .category-chevron {
+  transform: rotate(180deg);
+}
+
+/* Search Dropdown Results */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + var(--spacing-xs));
+  left: 0;
+  right: 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  max-height: 360px;
+  overflow-y: auto;
+  z-index: 20;
+}
+
+.results-list {
+  list-style: none;
+  padding: var(--spacing-xs) 0;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-canvas);
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item:hover, .result-item:focus {
+  background-color: var(--color-surface-dim);
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.result-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-ink);
+}
+
+.result-meta {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+}
+
+/* Category Tags Panel is styled in the Collapsible Category Tags section below */
+
+/* ==========================================================================
+   Map Floating Controls (Recenter + Zoom Pair)
+   ========================================================================== */
+.map-controls-group {
+  position: absolute;
+  right: var(--spacing-md);
+  bottom: 24px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* While the stall detail sheet or expanded navigation panel is open, controls yield
+   (Google Maps behavior) */
+#app.detail-open .map-controls-group,
+#app.nav-open:not(.nav-minimized) .map-controls-group {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* When navigation panel is minimized, controls stay fully accessible and lift above the bar */
+#app.nav-minimized .map-controls-group {
+  opacity: 1;
+  pointer-events: auto;
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 768px) {
+  .map-controls-group {
+    /* Anchored to the visible bottom-right corner (dvh-aware); safe-area
+       inset keeps clearance on gesture-nav phones */
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Base pill card */
+.map-controls-pill {
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Solo (single button): square pill — primary green bg for visual hierarchy */
+.map-controls-pill--solo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: var(--color-primary) !important;
+  border: 1px solid var(--color-primary) !important;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.map-controls-pill--solo .pill-btn {
+  width: 100%;
+  height: 100%;
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+.map-controls-pill--solo .pill-btn svg {
+  stroke: #ffffff !important;
+  fill: none;
+}
+
+.map-controls-pill--solo .pill-btn svg circle[fill="currentColor"] {
+  fill: #ffffff !important;
+}
+
+/* Row (two buttons side by side) */
+.map-controls-pill--row {
+  flex-direction: row;
+  height: 44px;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+/* Each button inside the pill */
+.pill-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.08s ease, background-color 0.08s ease;
+}
+
+.pill-btn svg {
+  display: block;
+  margin: 0 auto;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* Desktop-only hover states (prevents sticky color on mobile touch) */
+@media (hover: hover) and (pointer: fine) {
+  .pill-btn:hover {
+    background-color: var(--color-surface-dim);
+  }
+  
+  .map-controls-pill--solo .pill-btn:hover {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+  }
+}
+
+/* Instant tactile touch feedback (works on CSS active AND JS pointer pressed) */
+.pill-btn:active,
+.pill-btn.pill-btn--pressed {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  transform: scale(0.93);
+}
+
+.map-controls-pill--solo .pill-btn:active,
+.map-controls-pill--solo .pill-btn.pill-btn--pressed {
+  background-color: rgba(0, 0, 0, 0.28) !important;
+  color: #ffffff !important;
+  transform: scale(0.93);
+}
+
+.pill-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Horizontal divider (between vertical stacked buttons) */
+.pill-divider {
+  height: 1px;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Vertical divider (between side-by-side buttons) */
+.pill-divider--vertical {
+  width: 1px;
+  height: auto;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Legacy standalone icon button */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--hitbox-min);
+  height: var(--hitbox-min);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  color: var(--color-ink);
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-icon:hover { background-color: var(--color-surface-dim); }
+.btn-icon:active { background-color: var(--color-primary-light); color: var(--color-primary); }
+
+/* ==========================================================================
+   Floating Stall Detail Card / Sheet
+/* ==========================================================================
+   Floating Stall Detail Card / Sheet (Task 4.5 Enhanced)
+   ========================================================================== */
+.stall-detail-card {
+  position: absolute;
+  left: var(--spacing-md);
+  bottom: var(--spacing-md);
+  width: calc(100% - 32px);
+  max-width: 400px;
+  z-index: 15;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .stall-detail-card {
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+}
+
+/* Author display:flex would override the UA [hidden] rule — guard explicitly */
+.stall-detail-card[hidden] {
+  display: none;
+}
+
+/* Single authored entrance moment: card rises 8px with ease-out on open */
+@keyframes stall-card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stall-detail-card:not([hidden]) {
+  animation: stall-card-enter 160ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stall-detail-card:not([hidden]) {
+    animation: none;
+  }
+}
+
+/* Photo Banner Header */
+.stall-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background-color: var(--color-surface-dim);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.stall-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.stall-photo-img[hidden],
+.stall-photo-img:not([src]),
+.stall-photo-img[src=""] {
+  display: none !important;
+}
+
+.stall-photo-fallback[hidden] {
+  display: none !important;
+}
+
+.stall-photo-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--color-surface-dim);
+  color: var(--color-ink-muted);
+  user-select: none;
+}
+
+.photo-fallback-icon {
+  color: var(--color-primary);
+  opacity: 0.8;
+}
+
+.photo-fallback-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+/* Floating Close Button on Photo */
+.btn-close-detail-floating {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background-color 0.12s ease, transform 0.08s ease;
+}
+
+.btn-close-detail-floating:hover {
+  background-color: #FFFFFF;
+  transform: scale(1.05);
+}
+
+.btn-close-detail-floating:active {
+  transform: scale(0.95);
+}
+
+/* Card Content Area */
+.stall-detail-content {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Category Badge with Tinted Vector Icon */
+.badge-stall {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: var(--color-surface-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-ink);
+  user-select: none;
+}
+
+.badge-category-vector {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* Open / Closed Operating Badge */
+.badge-hours-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.badge-hours-status--open {
+  background-color: rgba(20, 70, 24, 0.08);
+  border: 1px solid rgba(20, 70, 24, 0.2);
+  color: var(--color-primary);
+}
+
+.badge-hours-status--closed {
+  background-color: rgba(185, 28, 28, 0.08);
+  border: 1px solid rgba(185, 28, 28, 0.2);
+  color: var(--color-error);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stall-badge-row {
+  margin-top: 1px;
+}
+
+.stall-tag {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* Operating Hours Row */
+.stall-hours-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-ink-muted);
+  margin-top: 2px;
+}
+
+.stall-hours-row .hours-icon {
+  color: var(--color-ink-muted);
+  flex-shrink: 0;
+}
+
+.stall-address {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  line-height: 1.35;
+  margin-top: 2px;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Floating Navigation Panel (Two-State: Expanded / Minimized)
+   ========================================================================== */
+.navigation-panel {
+  position: absolute;
+  left: var(--spacing-md);
+  bottom: var(--spacing-md);
+  width: calc(100% - 32px);
+  max-width: 440px;
+  max-height: 60vh;
+  z-index: 15;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  transition: transform 160ms cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+@media (max-width: 768px) {
+  .navigation-panel {
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* Guard against display:flex overriding [hidden] */
+.navigation-panel[hidden],
+.panel-summary[hidden] {
+  display: none !important;
+}
+
+/* --- Minimized Guidance Bar State --- */
+.panel-minimized-bar {
+  display: none;
+}
+
+.navigation-panel.navigation-panel--minimized {
+  max-height: 72px;
+  padding: 10px 14px;
+  overflow: visible;
+  cursor: pointer;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.navigation-panel.navigation-panel--minimized:hover {
+  background-color: #FAFAFA;
+}
+
+.navigation-panel.navigation-panel--minimized .panel-expanded-content {
+  display: none;
+}
+
+.navigation-panel.navigation-panel--minimized .panel-minimized-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--spacing-sm);
+}
+
+.minimized-info-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+
+.minimized-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.minimized-text-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.minimized-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+}
+
+.minimized-subtext {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.minimized-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.btn-minimized-expand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--color-primary);
+  min-height: 36px;
+  transition: background-color 0.1s ease;
+}
+
+.btn-minimized-expand:active {
+  background-color: #144618;
+}
+
+.btn-minimized-exit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-error);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.btn-minimized-exit:hover,
+.btn-minimized-exit:active {
+  background-color: #FEE2E2;
+}
+
+/* --- Expanded Sheet View --- */
+.panel-expanded-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.panel-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-panel-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.btn-panel-action:hover,
+.btn-panel-action:active {
+  background-color: var(--color-surface-dim);
+  color: var(--color-primary);
+}
+
+.panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.panel-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.panel-origin-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.selector-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.select-wrapper {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-btn);
+  padding: 0 var(--spacing-md);
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.entrance-select {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-ink);
+  cursor: pointer;
+  background: transparent;
+}
+
+.panel-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-surface-dim);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.summary-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-primary);
+}
+
+.btn-text-error {
+  color: var(--color-error);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-text-error:hover {
+  text-decoration: underline;
+}
+
+.panel-instructions-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.instructions-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.instruction-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-xs) 0;
+  border-bottom: 1px solid var(--color-canvas);
+}
+
+.instruction-step:last-child {
+  border-bottom: none;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.step-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.step-text {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--color-ink);
+}
+
+.step-dist {
+  font-size: 11px;
+  color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   Flat Civic Surfaces & Borders (NO SHADOWS, NO GRADIENTS)
+   ========================================================================== */
+.surface-flat {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.card-floating {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: none !important; /* Strict enforcement */
+}
+
+/* ==========================================================================
+   Buttons, Badges & Chips
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-btn);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: none !important;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--color-primary);
+}
+
+.btn-primary:hover, .btn-primary:focus-visible {
+  background-color: #144818;
+  border-color: #144818;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.badge-stall {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid rgba(27, 94, 32, 0.2);
+}
+
+/* Flat zone swatch inside the category badge — canonical ZONE_PALETTE color
+   tying the card to its polygon fill on the map */
+.badge-zone-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  border: 1px solid rgba(26, 36, 26, 0.25);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-chip);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chip:hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-canvas);
+}
+
+.chip--active {
+  background-color: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   SVG Map Styling Rules (Preserve original 2px SVG vector outlines)
+   ========================================================================== */
+#map-viewport [id^="id_"],
+#map-viewport [id^="slot_"],
+#map-viewport [data-stall-id] {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+#map-viewport [id^="id_"]:hover,
+#map-viewport [id^="slot_"]:hover {
+  filter: brightness(0.92);
+}
+
+#map-viewport .stall--selected {
+  stroke: var(--color-ink) !important;
+  stroke-width: 4px !important;
+}
+
+#map-viewport .stall--highlighted {
+  stroke: var(--color-error) !important;
+  stroke-width: 4px !important;
+}
+
+#route-layer polyline,
+#route-layer path {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  will-change: stroke-dashoffset;
+}
+
+/* ==========================================================================
+   Search Category Dropdown (Attached Directly Inside Search Card)
+   ========================================================================== */
+.search-category-dropdown {
+  border-top: 1px solid var(--color-canvas);
+  background-color: var(--color-surface);
+  max-height: 52vh;
+  max-height: 52dvh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-category-dropdown[hidden] {
+  display: none !important;
+}
+
+.category-dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--spacing-md) 4px;
+}
+
+.dropdown-header-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.2px;
+}
+
+/* 2-Column Vector Category Grid (Clean Mobile & Desktop Layout) */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px 10px 10px;
+}
+
+.category-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  min-width: 0;
+  text-align: left;
+  transition: background-color 0.12s ease, border-color 0.12s ease, color 0.12s ease, transform 0.08s ease;
+  box-shadow: none !important;
+}
+
+.category-item:hover {
+  background-color: var(--color-surface-dim);
+  border-color: var(--color-primary);
+}
+
+.category-item:active {
+  transform: scale(0.97);
+}
+
+.category-icon {
+  flex-shrink: 0;
+  color: var(--color-ink-muted);
+  transition: color 0.12s ease;
+}
+
+.category-item-label {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Highlighted Active Category Item */
+.category-item--active {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: #FFFFFF !important;
+}
+
+.category-item--active .category-icon {
+  color: #FFFFFF !important;
+}
+
+/* Action Footer (Clear All / Done) */
+.category-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px var(--spacing-md);
+  border-top: 1px solid var(--color-canvas);
+  background-color: var(--color-surface);
+  flex-shrink: 0;
+}
+
+.btn-panel-reset {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  transition: color 0.12s ease;
+}
+
+.btn-panel-reset:hover {
+  color: var(--color-error);
+}
+
+.btn-panel-done {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 18px;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  border: 1px solid var(--color-primary);
+  transition: background-color 0.12s ease;
+}
+
+.btn-panel-done:hover {
+  background-color: #144618;
+}
+
+
