@@ -5,8 +5,7 @@
     "neighbors": [
       "node_ea_t4",
       "node_dm_t2",
-      "node_ea_t5",
-      "node_dm_x1"
+      "node_ea_t5"
     ]
   },
   "node_dm_t2": {
@@ -22,10 +21,9 @@
     "x": -4799,
     "y": -159,
     "neighbors": [
-      "node_ex_t16",
+      "node_fs_t1",
       "node_dm_t2",
-      "node_dm_t4",
-      "node_dm_x1"
+      "node_dm_t4"
     ]
   },
   "node_dm_t4": {
@@ -50,12 +48,18 @@
     "x": -4361,
     "y": -406,
     "neighbors": [
-      "node_dm_t1",
       "node_ea_t5",
       "node_dm_t4",
-      "node_dm_t3",
       "node_dm_t2",
       "node_dm_t5"
+    ]
+  },
+  "node_fs_t1": {
+    "x": -4799,
+    "y": -56,
+    "neighbors": [
+      "node_dm_t3",
+      "node_ex_t16"
     ]
   },
   "node_ea_c1": {
@@ -266,7 +270,7 @@
     "neighbors": [
       "node_ex_t17",
       "node_ex_x2",
-      "node_dm_t3"
+      "node_fs_t1"
     ]
   },
   "node_ex_t17": {

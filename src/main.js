@@ -1,9 +1,9 @@
 /**
  * MerkadoGo Web — Main Application Entry Point
  */
-import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall } from './mapRenderer.js';
+import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall, renderEntranceMarkers, setEntranceMarkersVisibility, highlightEntranceMarker } from './mapRenderer.js';
 import { MapControls } from './mapControls.js';
-import { initStallDetailCard, initNavigationPanel, initCategoryPanel, initLiveClock } from './uiController.js';
+import { initStallDetailCard, initNavigationPanel, initEntrancePreviewCard, initCategoryPanel, initLiveClock } from './uiController.js';
 import { loadStaticData, getStaticData, getStallNodeIds, loadVendorData, getVendorData, getVendorByStallId, upsertVendorRecord, removeVendorRecord } from './dataStore.js';
 import { buildPathfindingGraph, verifyPathfindingGraph, analyzeReachability } from './pathfinder.js';
 import { initLiveStallSync } from './services/stallSync.js';
@@ -16,6 +16,7 @@ let appState = {
   pathGraph: null,
   navPanel: null,
   stallCard: null,
+  entrancePreviewCard: null,
   unsubscribeStallSync: null,
   selectedStallId: null
 };
@@ -105,16 +106,60 @@ document.addEventListener('DOMContentLoaded', async () => {
       stallNodes: staticData.stallNodes
     });
 
-    // Task 4.3: Navigation panel — entrance selector, route polyline in
-    // #route-layer, turn-by-turn instruction list (no distances, per the
-    // angle-only product decision)
+    // Task 4.6: Render 14 demand-driven entrance markers in #markers-layer
+    renderEntranceMarkers(
+      mapContext.markersLayer,
+      staticData.entryPoints,
+      staticData.mapNodes,
+      (entrance) => {
+        // Tapping an entrance marker on the map opens the Entrance Preview card
+        appState.stallCard?.hide();
+        appState.navPanel?.syncSelectedEntrance(entrance.entrance_id);
+        appState.entrancePreviewCard?.show(entrance);
+      }
+    );
+
+    // Task 4.6: Entrance Preview Card — shows real-life photo/storefront fallback,
+    // entrance description, and "Start Route Here" button
+    appState.entrancePreviewCard = initEntrancePreviewCard({
+      onStartRoute: (entrance) => {
+        appState.navPanel?.routeFromEntrance(entrance);
+      },
+      onDismiss: () => {
+        highlightEntranceMarker(mapContext.markersLayer, null);
+        appState.navPanel?.syncSelectedEntrance('');
+      }
+    });
+
+    // Task 4.3 + 4.6: Navigation panel — entrance selector, route polyline,
+    // entrance selection mode banner, and turn-by-turn instruction list
     appState.navPanel = initNavigationPanel({
       routeLayer: mapContext.routeLayer,
+      markersLayer: mapContext.markersLayer,
       graph: pathGraph,
       stallNodes: staticData.stallNodes,
       entryPoints: staticData.entryPoints,
       getVendor: getVendorByStallId,
       stallElements: mapContext.stallElements,
+      onSelectEntranceFromDropdown: (entrance) => {
+        // User selected an entrance from the quick dropdown in the selection banner
+        const node = staticData.mapNodes[entrance.node_id];
+        if (node) {
+          mapControls.focusOnCoordinates(node.x + 7823.47, node.y + 3174.0, 1600);
+        }
+        appState.stallCard?.hide();
+        appState.entrancePreviewCard?.show(entrance);
+      },
+      onEntranceSelectionChange: (isSelecting, stallIdToRestore) => {
+        if (isSelecting) {
+          appState.stallCard?.hide();
+          appState.entrancePreviewCard?.hide();
+          // Frame overview around market center
+          mapControls.focusOnCoordinates(3900, 3400, 3200);
+        } else if (stallIdToRestore) {
+          appState.stallCard?.showStall(stallIdToRestore);
+        }
+      },
       onFocusBounds: (bounds) => {
         // Frame the whole route in the viewport; fit width from the
         // container's aspect so both dimensions fit, with 40% breathing room
@@ -122,30 +167,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         const aspect = (rect.height || 1) / (rect.width || 1);
         const fitWidth = Math.max(bounds.width, bounds.height / aspect) * 1.4;
         mapControls.focusOnCoordinates(bounds.cx, bounds.cy, fitWidth > 0 ? fitWidth : 1200);
+      },
+      onAvatarMove: (pt) => {
+        // Real-time camera tracking: smoothly centers on walking avatar with closer zoom for clarity
+        mapControls.centerOnCoordinates(pt.x, pt.y, 1050);
       }
     });
 
-    // Route button on the stall detail card launches navigation for that
-    // stall: the card yields to the navigation panel (one sheet at a time)
-    // and the destination stall keeps its selection outline
+    // Route button on the stall detail card enters "Select Your Entrance" mode (Task 4.6)
     document.getElementById('btn-route-here')?.addEventListener('click', () => {
       const stallId = appState.selectedStallId;
       if (!stallId) return;
-      if (appState.navPanel?.openForStall(stallId)) {
-        appState.stallCard.hide();
-        selectStall(stallId, mapContext.stallElements);
-      } else {
-        alert("Sorry, navigation is not yet available for this vendor.");
-      }
+      appState.stallCard.hide();
+      appState.navPanel?.startEntranceSelection(stallId);
     });
 
     // Set up delegated stall hit-testing; card population rides the callback.
-    // Selecting a stall while the navigation panel is open closes it — one
-    // bottom sheet at a time.
+    // Selecting a stall while the navigation panel or entrance selection is open closes them
     setupStallHitTesting(mapContext.svgElement, mapContext.stallElements, (stallId, stallNode) => {
       if (appState.navPanel?.isOpen()) {
         appState.navPanel.close();
       }
+      if (appState.navPanel?.isSelectingEntrance()) {
+        appState.navPanel.cancelEntranceSelection();
+      }
+      appState.entrancePreviewCard?.hide();
       appState.selectedStallId = stallId;
       appState.stallCard.showStall(stallId);
     });

@@ -2,71 +2,85 @@
   {
     "entrance_id": 1,
     "node_id": "node_ex_1",
-    "description": "Straight From Church"
+    "description": "Straight From Church",
+    "image_url": null
   },
   {
     "entrance_id": 2,
     "node_id": "node_ex_2",
-    "description": "The Back of LCC"
+    "description": "The Back of LCC",
+    "image_url": null
   },
   {
     "entrance_id": 3,
     "node_id": "node_ex_3",
-    "description": "Side of LCC"
+    "description": "Side of LCC",
+    "image_url": null
   },
   {
     "entrance_id": 4,
     "node_id": "node_ex_t3",
-    "description": "Wet Market Left Side"
+    "description": "Wet Market Left Side",
+    "image_url": null
   },
   {
     "entrance_id": 5,
     "node_id": "node_ex_t4",
-    "description": "Rice Section From Wet Market Left Side"
+    "description": "Rice Section From Wet Market Left Side",
+    "image_url": null
   },
   {
     "entrance_id": 6,
     "node_id": "node_ex_t17",
-    "description": "Rice Section Intersection"
+    "description": "Rice Section Intersection",
+    "image_url": null
   },
   {
     "entrance_id": 7,
     "node_id": "node_ex_6",
-    "description": "Near Rosco Building"
+    "description": "Near Rosco Building",
+    "image_url": null
   },
   {
     "entrance_id": 8,
     "node_id": "node_ex_t22",
-    "description": "Right Side Fruit Section"
+    "description": "Right Side Fruit Section",
+    "image_url": null
   },
   {
     "entrance_id": 9,
     "node_id": "node_ex_c1",
-    "description": "Dry Market Back"
+    "description": "Dry Market Back",
+    "image_url": null
   },
   {
     "entrance_id": 10,
     "node_id": "node_ex_t19",
-    "description": "Intersection From Side of LCC"
+    "description": "Intersection From Side of LCC",
+    "image_url": null
   },
   {
     "entrance_id": 11,
     "node_id": "node_ex_t14",
-    "description": "Intersection From Back of LCC"
+    "description": "Intersection From Back of LCC",
+    "image_url": null
   },
   {
     "entrance_id": 12,
     "node_id": "node_ex_t23",
-    "description": "Between Perillo Eatery"
+    "description": "Between Perillo Eatery",
+    "image_url": null
   },
   {
     "entrance_id": 13,
     "node_id": "node_ex_x1",
-    "description": "Wet Market Middle"
+    "description": "Wet Market Middle",
+    "image_url": null
   },
   {
     "entrance_id": 14,
     "node_id": "node_ex_x2",
-    "description": "Intersection between Wet, Dry, and Rice Market"
+    "description": "Intersection between Wet, Dry, and Rice Market",
+    "image_url": null
   }
 ]

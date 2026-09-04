@@ -104,6 +104,7 @@
   --radius-btn: 12px;
   --radius-input: 12px;
   --radius-sm: 6px;
+  --radius-pill: 9999px;
 
   /* --- 6. Touch & Component Sizing --- */
   --hitbox-min: 44px;
@@ -348,14 +349,15 @@ button, input, select, textarea {
 .market-datetime-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
+  gap: 7px;
+  padding: 4px 9px;
   background-color: var(--color-surface-dim);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   user-select: none;
   white-space: nowrap;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .datetime-icon {
@@ -371,20 +373,24 @@ button, input, select, textarea {
 }
 
 .datetime-time {
-  font-family: var(--font-body);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   font-size: 11.5px;
   font-weight: 700;
   color: var(--color-ink);
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.2px;
+  font-feature-settings: 'tnum' 1;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
 }
 
 .datetime-date {
+  font-family: var(--font-body);
   font-size: 9.5px;
   font-weight: 600;
   color: var(--color-ink-muted);
   letter-spacing: 0.2px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Search Bar & Container (Thinner, Zero Padding Bloat) */
@@ -555,9 +561,10 @@ button, input, select, textarea {
   transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* While the stall detail sheet or expanded navigation panel is open, controls yield
-   (Google Maps behavior) */
+/* While inspecting a stall, during walking animation, or when navigation panel is expanded,
+   controls yield (standard Google/Apple Maps behavior to keep map clean) */
 #app.detail-open .map-controls-group,
+#app.walking-active .map-controls-group,
 #app.nav-open:not(.nav-minimized) .map-controls-group {
   opacity: 0;
   pointer-events: none;
@@ -1125,6 +1132,7 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .btn-panel-action {
@@ -1138,7 +1146,7 @@ button, input, select, textarea {
   border: 1px solid var(--color-border);
   color: var(--color-ink-muted);
   cursor: pointer;
-  transition: background-color 0.1s ease, color 0.1s ease;
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 }
 
 .btn-panel-action:hover,
@@ -1147,16 +1155,70 @@ button, input, select, textarea {
   color: var(--color-primary);
 }
 
+.btn-panel-action--change {
+  color: var(--color-primary);
+  background-color: var(--color-surface-dim);
+}
+
+.btn-panel-action--change:hover,
+.btn-panel-action--change:active {
+  background-color: #E8F5E9;
+  color: var(--color-primary-dark);
+  border-color: var(--color-primary);
+}
+
+.btn-panel-action--close {
+  color: var(--color-error);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.btn-panel-action--close:hover,
+.btn-panel-action--close:active {
+  background-color: #FEE2E2;
+  color: var(--color-error);
+  border-color: rgba(229, 57, 53, 0.3);
+}
+
 .panel-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: var(--spacing-sm);
 }
 
 .panel-title-group {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.panel-title-group .title-section {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.25;
+}
+
+.panel-title-group .text-meta {
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.nav-stall-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-surface-dim);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
 }
 
 .panel-origin-selector {
@@ -1275,6 +1337,564 @@ button, input, select, textarea {
 .step-dist {
   font-size: 11px;
   color: var(--color-ink-muted);
+}
+
+/* ==========================================================================
+   Indoor Route Navigation Overlay & Pedestrian Tracking
+   ========================================================================== */
+#route-layer {
+  pointer-events: none;
+}
+
+/* Translucent track casing defining the pedestrian corridor path */
+#route-layer .route-track-casing,
+.route-track-casing {
+  fill: none;
+  stroke: rgba(27, 94, 32, 0.22);
+  stroke-width: 54px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Solid forward-drawn Forest Green pedestrian walking path */
+#route-layer .route-dotted-line,
+.route-dotted-line {
+  fill: none;
+  stroke: #1B5E20;
+  stroke-width: 28px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ==========================================================================
+   Animated Walking Pedestrian Avatar (Impeccable Craft Redesign)
+   ========================================================================== */
+.route-walking-avatar {
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.walker-visual {
+  transform-origin: 0 0;
+  transition: transform 0.16s ease-out;
+}
+
+/* Floating Wayfinding Turn Direction Bubble */
+.walker-turn-bubble {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px) scale(0.9);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.walker-turn-bubble.is-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.walker-bubble-bg {
+  fill: #FFFFFF;
+  stroke: #1B5E20;
+  stroke-width: 1.5px;
+}
+
+.walker-bubble-tail {
+  fill: #1B5E20;
+}
+
+.walker-bubble-text {
+  font-family: var(--font-body, system-ui, sans-serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  fill: #1B5E20;
+  letter-spacing: 0.2px;
+}
+
+.avatar-pulse-halo {
+  fill: rgba(27, 94, 32, 0.16);
+  animation: avatarPulse 1.6s ease-out infinite;
+}
+
+@keyframes avatarPulse {
+  0% {
+    r: 16;
+    opacity: 0.8;
+  }
+  70% {
+    r: 28;
+    opacity: 0;
+  }
+  100% {
+    r: 28;
+    opacity: 0;
+  }
+}
+
+.walker-shadow {
+  fill: rgba(20, 70, 24, 0.25);
+}
+
+.route-walking-avatar.is-walking .walker-shadow {
+  animation: walkerShadowPulse 0.32s ease-in-out infinite alternate;
+  transform-origin: 0 16px;
+}
+
+@keyframes walkerShadowPulse {
+  0% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0.18;
+  }
+}
+
+/* Leg walk cycle */
+.route-walking-avatar.is-walking .walker-leg--left {
+  animation: walkerLegSwingLeft 0.32s ease-in-out infinite alternate;
+  transform-origin: -4px 2px;
+}
+
+.route-walking-avatar.is-walking .walker-leg--right {
+  animation: walkerLegSwingRight 0.32s ease-in-out infinite alternate;
+  transform-origin: 4px 2px;
+}
+
+@keyframes walkerLegSwingLeft {
+  0% {
+    transform: rotate(-30deg);
+  }
+  100% {
+    transform: rotate(30deg);
+  }
+}
+
+@keyframes walkerLegSwingRight {
+  0% {
+    transform: rotate(30deg);
+  }
+  100% {
+    transform: rotate(-30deg);
+  }
+}
+
+/* Arm walk cycle (swings opposite to legs) */
+.route-walking-avatar.is-walking .walker-arm--left {
+  animation: walkerArmSwingLeft 0.32s ease-in-out infinite alternate;
+  transform-origin: -7.5px -7.5px;
+}
+
+.route-walking-avatar.is-walking .walker-arm--right {
+  animation: walkerArmSwingRight 0.32s ease-in-out infinite alternate;
+  transform-origin: 7.5px -7.5px;
+}
+
+@keyframes walkerArmSwingLeft {
+  0% {
+    transform: rotate(24deg);
+  }
+  100% {
+    transform: rotate(-24deg);
+  }
+}
+
+@keyframes walkerArmSwingRight {
+  0% {
+    transform: rotate(-24deg);
+  }
+  100% {
+    transform: rotate(24deg);
+  }
+}
+
+/* Body bobbing with each step */
+.route-walking-avatar.is-walking .walker-body-group {
+  animation: walkerBodyBob 0.16s ease-in-out infinite alternate;
+  transform-origin: 0 0;
+}
+
+@keyframes walkerBodyBob {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2.5px);
+  }
+}
+
+/* --- Arrival Celebration State --- */
+.route-walking-avatar.is-arrived .walker-arm--right {
+  animation: walkerArrivalWave 0.5s ease-in-out infinite alternate;
+  transform-origin: 7.5px -7.5px;
+}
+
+@keyframes walkerArrivalWave {
+  0% {
+    transform: rotate(-125deg);
+  }
+  100% {
+    transform: rotate(-155deg);
+  }
+}
+
+.route-walking-avatar.is-arrived .walker-body-group {
+  animation: walkerArrivalHop 0.7s cubic-bezier(0.16, 1, 0.3, 1) 1;
+}
+
+@keyframes walkerArrivalHop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  35% {
+    transform: translateY(-6px);
+  }
+  70% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Accessible Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .route-walking-avatar.is-walking .walker-leg--left,
+  .route-walking-avatar.is-walking .walker-leg--right,
+  .route-walking-avatar.is-walking .walker-arm--left,
+  .route-walking-avatar.is-walking .walker-arm--right,
+  .route-walking-avatar.is-walking .walker-body-group,
+  .route-walking-avatar.is-walking .walker-shadow,
+  .route-walking-avatar.is-arrived .walker-arm--right,
+  .route-walking-avatar.is-arrived .walker-body-group,
+  .avatar-pulse-halo {
+    animation: none !important;
+  }
+}
+
+/* Destination Arrival Celebration Ring */
+.destination-arrival-pulse {
+  fill: rgba(229, 57, 53, 0.25);
+  animation: destArrivalPulse 1.6s ease-out infinite;
+}
+
+@keyframes destArrivalPulse {
+  0% {
+    r: 32;
+    opacity: 0.9;
+  }
+  70% {
+    r: 120;
+    opacity: 0;
+  }
+  100% {
+    r: 120;
+    opacity: 0;
+  }
+}
+
+/* Floating Skip Animation Button */
+/* Floating Skip Animation Button (Task 4.8) - Anchored at bottom center */
+.btn-skip-walking {
+  position: absolute;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--color-primary);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.12s, transform 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-skip-walking:hover {
+  background-color: var(--color-surface-dim);
+  transform: translateX(-50%) scale(1.04);
+}
+
+.btn-skip-walking:active {
+  background-color: var(--color-primary-light);
+  transform: translateX(-50%) scale(0.96);
+}
+
+.btn-skip-walking[hidden] {
+  display: none !important;
+}
+
+/* Change Entrance Button in Navigation Panel */
+.btn-change-entrance {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  font-family: var(--font-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: var(--color-surface-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+
+.btn-change-entrance:hover {
+  background-color: #E8F5E9;
+  border-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Entrance Markers & Layer (Task 4.6 Demand-Driven)
+   ========================================================================== */
+#markers-layer {
+  display: none;
+  pointer-events: none;
+}
+
+#app.selecting-entrance #markers-layer,
+#app.nav-open #markers-layer {
+  display: block;
+  pointer-events: auto;
+}
+
+.entrance-marker {
+  cursor: pointer;
+  pointer-events: all;
+  user-select: none;
+  outline: none;
+}
+
+/* Inner visual container handles hover/active scaling in local (0,0) coordinates,
+   completely avoiding the SVG translation override / comet-shooting bug */
+.entrance-marker-visual {
+  transform-origin: 0 0;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.entrance-marker:hover .entrance-marker-visual,
+.entrance-marker:focus-visible .entrance-marker-visual {
+  transform: scale(1.08);
+}
+
+.entrance-marker--active .entrance-marker-visual {
+  transform: scale(1.14);
+}
+
+.entrance-marker-hitbox {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.entrance-marker-shadow {
+  pointer-events: none;
+}
+
+.entrance-marker-pin-body {
+  fill: #E53935;
+  stroke: #B71C1C;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.entrance-marker-pin-shade {
+  fill: #C62828;
+  pointer-events: none;
+}
+
+.entrance-marker-disc {
+  fill: #FFFFFF;
+}
+
+.entrance-marker-avatar {
+  fill: #E53935;
+}
+
+/* Option A Entry Badge Pill (White bg, Red border #E53935, Dark text #1E293B) */
+.entrance-marker-pill-bg {
+  fill: #FFFFFF;
+  stroke: #E53935;
+  stroke-width: 3;
+  transition: fill 0.15s, stroke 0.15s;
+}
+
+.entrance-marker-pill-text {
+  font-family: var(--font-body);
+  font-size: 19px;
+  font-weight: 900;
+  fill: #1E293B;
+  text-anchor: middle;
+  dominant-baseline: central;
+  letter-spacing: 0.3px;
+  transition: fill 0.15s;
+}
+
+.entrance-marker--active .entrance-marker-pill-bg {
+  fill: #E53935;
+  stroke: #B71C1C;
+  stroke-width: 3.5;
+}
+
+.entrance-marker--active .entrance-marker-pill-text {
+  fill: #FFFFFF;
+}
+
+/* Entrance Selection Top Guide Banner */
+.entrance-selection-banner {
+  display: none;
+  flex-direction: column;
+  padding: 10px 14px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  gap: 10px;
+  box-shadow: none !important;
+  animation: fadeIn 0.16s ease-out;
+}
+
+#app.selecting-entrance .search-container {
+  display: none !important;
+}
+
+#app.selecting-entrance .entrance-selection-banner {
+  display: flex !important;
+}
+
+.selection-banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
+.selection-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.selection-banner-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-dim);
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.selection-banner-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.selection-banner-title {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.selection-banner-subtitle {
+  font-size: 11px;
+  color: var(--color-ink-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selection-banner-dropdown-wrap {
+  width: 100%;
+}
+
+.banner-entrance-select {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+  background-color: var(--color-surface-dim);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.banner-entrance-select:hover,
+.banner-entrance-select:focus {
+  border-color: var(--color-primary);
+  background-color: var(--color-surface);
+}
+
+.btn-banner-cancel {
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-ink-muted);
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.btn-banner-cancel:hover {
+  color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* Floating Entrance Preview Card */
+.entrance-preview-card {
+  position: absolute;
+  left: var(--spacing-md);
+  bottom: var(--spacing-md);
+  width: calc(100% - 32px);
+  max-width: 400px;
+  z-index: 25;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: none !important;
+  animation: slideUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.entrance-preview-card[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  .entrance-preview-card {
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+}
+
+#app.preview-open .map-controls-group {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -1404,14 +2024,12 @@ button, input, select, textarea {
   stroke-width: 4px !important;
 }
 
-#route-layer polyline,
-#route-layer path {
+#route-layer polyline {
   fill: none;
   stroke: var(--color-primary);
-  stroke-width: 4px;
+  stroke-width: 28px;
   stroke-linecap: round;
   stroke-linejoin: round;
-  will-change: stroke-dashoffset;
 }
 
 /* ==========================================================================

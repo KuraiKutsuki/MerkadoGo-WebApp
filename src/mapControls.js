@@ -582,6 +582,29 @@ export class MapControls {
     this.animateToViewBox(targetX, targetY, targetWidth, targetHeight, 0, 280);
   }
 
+  /**
+   * Smoothly centers the camera on dynamic coordinates in real time.
+   * Used for real-time avatar tracking during walking navigation animation.
+   * @param {number} x - SVG target X
+   * @param {number} y - SVG target Y
+   * @param {number|null} [targetWidth] - Viewport width; defaults to current or max 1400
+   */
+  centerOnCoordinates(x, y, targetWidth = null) {
+    this.cancelPhysics();
+    const rect = this.container.getBoundingClientRect();
+    const aspect = (rect.height || 1) / (rect.width || 1);
+    const w = targetWidth || Math.min(this.vb.width, 1400);
+    const h = w * aspect;
+
+    this.vb.width = w;
+    this.vb.height = h;
+    this.vb.x = x - (w / 2);
+    this.vb.y = y - (h / 2);
+
+    this.clampViewBox();
+    this.renderViewBox();
+  }
+
   focusElement(element, targetWidth = 1000) {
     if (!element || typeof element.getBBox !== 'function') return;
     try {

@@ -42,7 +42,7 @@ let vendorData = { records: null, byStallId: null };
  * @returns {Promise<any>}
  */
 async function fetchJson(url) {
-  const response = await fetch(url);
+  const response = await fetch(`${url}?t=${Date.now()}`);
   if (!response.ok) {
     throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
   }
