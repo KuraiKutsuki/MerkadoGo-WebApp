@@ -2029,7 +2029,7 @@ button, input, select, textarea {
 .entrance-marker-pin-body {
   fill: #E53935;
   stroke: #B71C1C;
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linejoin: round;
 }
 
@@ -2046,29 +2046,29 @@ button, input, select, textarea {
   fill: #E53935;
 }
 
-/* Option A Entry Badge Pill (White bg, Red border #E53935, Dark text #1E293B) */
+/* Crown Entry Badge Pill Above Pin (White bg, Red border #E53935, Dark text #1E293B) */
 .entrance-marker-pill-bg {
   fill: #FFFFFF;
   stroke: #E53935;
-  stroke-width: 3;
+  stroke-width: 4.5;
   transition: fill 0.15s, stroke 0.15s;
 }
 
 .entrance-marker-pill-text {
   font-family: var(--font-body);
-  font-size: 19px;
+  font-size: 42px;
   font-weight: 900;
   fill: #1E293B;
   text-anchor: middle;
   dominant-baseline: central;
-  letter-spacing: 0.3px;
+  letter-spacing: -0.6px;
   transition: fill 0.15s;
 }
 
 .entrance-marker--active .entrance-marker-pill-bg {
   fill: #E53935;
   stroke: #B71C1C;
-  stroke-width: 3.5;
+  stroke-width: 5.5;
 }
 
 .entrance-marker--active .entrance-marker-pill-text {

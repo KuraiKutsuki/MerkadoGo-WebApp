@@ -989,18 +989,18 @@ export function renderEntranceMarkers(markersLayer, entryPoints, mapNodes, onEnt
     rotator.setAttribute('class', 'entrance-marker-rotator');
     rotator.setAttribute('transform', `rotate(${-currentMapRotation}, 0, 0)`);
 
-    // Large high-contrast vector pin matching user reference:
-    // Pin head circle center: (0, -74), radius R = 38. Top of pin at y = -112.
+    // Scaled-up high-contrast vector pin with crown badge above the pin:
+    // Pin head circle center: (0, -96), radius R = 48. Top of pin at y = -144.
     // Pin tip touches coordinate at (0, 0).
-    // Tangent points from (0, 0) to circle (0, -74) with R = 38: x = ±32.6, y = -54.5.
+    // Tangent points from (0, 0) to circle (0, -96) with R = 48: x = ±41.6, y = -72.
 
-    // 1. Transparent Hitbox (140x185 units for effortless touch ergonomics)
+    // 1. Transparent Hitbox (270x275 units covering jumbo crown badge and pin)
     const hitbox = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     hitbox.setAttribute('class', 'entrance-marker-hitbox');
-    hitbox.setAttribute('x', '-70');
-    hitbox.setAttribute('y', '-125');
-    hitbox.setAttribute('width', '140');
-    hitbox.setAttribute('height', '185');
+    hitbox.setAttribute('x', '-135');
+    hitbox.setAttribute('y', '-245');
+    hitbox.setAttribute('width', '270');
+    hitbox.setAttribute('height', '275');
     hitbox.setAttribute('fill', 'transparent');
 
     // Inner visual group: scales locally around (0,0) so the parent SVG translation is NEVER overridden
@@ -1011,56 +1011,56 @@ export function renderEntranceMarkers(markersLayer, entryPoints, mapNodes, onEnt
     const shadow = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     shadow.setAttribute('class', 'entrance-marker-shadow');
     shadow.setAttribute('cx', '0');
-    shadow.setAttribute('cy', '3');
-    shadow.setAttribute('rx', '24');
-    shadow.setAttribute('ry', '6');
-    shadow.setAttribute('fill', 'rgba(0, 0, 0, 0.20)');
+    shadow.setAttribute('cy', '4');
+    shadow.setAttribute('rx', '30');
+    shadow.setAttribute('ry', '8');
+    shadow.setAttribute('fill', 'rgba(0, 0, 0, 0.22)');
 
     // 3. Teardrop Location Pin Body (Vibrant Red #E53935)
     const pin = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     pin.setAttribute('class', 'entrance-marker-pin-body');
-    pin.setAttribute('d', 'M 0 0 L -32.6 -54.5 A 38 38 0 1 1 32.6 -54.5 Z');
+    pin.setAttribute('d', 'M 0 0 L -41.6 -72 A 48 48 0 1 1 41.6 -72 Z');
 
     // 4. Subtle 3D Beveled Shade on Right Half (#C62828)
     const shade = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     shade.setAttribute('class', 'entrance-marker-pin-shade');
-    shade.setAttribute('d', 'M 0 0 L 0 -112 A 38 38 0 0 1 32.6 -54.5 Z');
+    shade.setAttribute('d', 'M 0 0 L 0 -144 A 48 48 0 0 1 41.6 -72 Z');
 
     // 5. Crisp White Inner Circle
     const disc = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     disc.setAttribute('class', 'entrance-marker-disc');
     disc.setAttribute('cx', '0');
-    disc.setAttribute('cy', '-74');
-    disc.setAttribute('r', '26');
+    disc.setAttribute('cy', '-96');
+    disc.setAttribute('r', '33');
 
     // 6. User / Person Avatar Silhouette in Red (#E53935)
     const avatarHead = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     avatarHead.setAttribute('class', 'entrance-marker-avatar');
     avatarHead.setAttribute('cx', '0');
-    avatarHead.setAttribute('cy', '-82');
-    avatarHead.setAttribute('r', '8.5');
+    avatarHead.setAttribute('cy', '-106');
+    avatarHead.setAttribute('r', '11');
 
     const avatarTorso = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     avatarTorso.setAttribute('class', 'entrance-marker-avatar');
-    avatarTorso.setAttribute('d', 'M -16.5 -55 C -16.5 -69, 16.5 -69, 16.5 -55 A 25.5 25.5 0 0 1 -16.5 -55 Z');
+    avatarTorso.setAttribute('d', 'M -21 -71 C -21 -90, 21 -90, 21 -71 A 32.5 32.5 0 0 1 -21 -71 Z');
 
-    // 7. Option A Entry Badge Pill Below Pin (White bg, Red border #E53935, Dark text #1E293B)
-    // Larger dimensions and bold 19px font for crystal-clear readability on mobile
-    const pillWidth = entry.entrance_id >= 10 ? 126 : 116;
+    // 7. Crown Entry Badge Pill Above Pin (White bg, Red border #E53935, Dark text #1E293B)
+    // Jumbo high-visibility dimensions for 42px ultra-bold text readable from any distance
+    const pillWidth = entry.entrance_id >= 10 ? 256 : 230;
     const halfPill = pillWidth / 2;
 
     const pillBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     pillBg.setAttribute('class', 'entrance-marker-pill-bg');
     pillBg.setAttribute('x', String(-halfPill));
-    pillBg.setAttribute('y', '8');
+    pillBg.setAttribute('y', '-226');
     pillBg.setAttribute('width', String(pillWidth));
-    pillBg.setAttribute('height', '36');
-    pillBg.setAttribute('rx', '18');
+    pillBg.setAttribute('height', '70');
+    pillBg.setAttribute('rx', '35');
 
     const pillText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     pillText.setAttribute('class', 'entrance-marker-pill-text');
     pillText.setAttribute('x', '0');
-    pillText.setAttribute('y', '26.5');
+    pillText.setAttribute('y', '-191');
     pillText.textContent = `Entry ${entry.entrance_id}`;
 
     visual.appendChild(shadow);
