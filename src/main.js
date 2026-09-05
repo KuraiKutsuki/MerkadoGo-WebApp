@@ -1,7 +1,7 @@
 /**
  * MerkadoGo Web — Main Application Entry Point
  */
-import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall, renderEntranceMarkers, setEntranceMarkersVisibility, highlightEntranceMarker } from './mapRenderer.js';
+import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall, renderEntranceMarkers, setEntranceMarkersVisibility, highlightEntranceMarker, dismissSplashScreen } from './mapRenderer.js';
 import { MapControls } from './mapControls.js';
 import { initStallDetailCard, initNavigationPanel, initEntrancePreviewCard, initCategoryPanel, initLiveClock } from './uiController.js';
 import { loadStaticData, getStaticData, getStallNodeIds, loadVendorData, getVendorData, getVendorByStallId, upsertVendorRecord, removeVendorRecord } from './dataStore.js';
@@ -98,6 +98,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Task 3.2: color polygons by primary_category via the canonical ZONE_PALETTE
     applyVendorColors(vendorData.records, mapContext.stallElements);
+
+    // Dismiss splash screen once initial map and vendor colors are fully applied
+    dismissSplashScreen(1500);
 
     // Task 3.3: Stall Details card — populate on stall click, dismissible
     appState.stallCard = initStallDetailCard({

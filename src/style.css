@@ -244,33 +244,269 @@ button, input, select, textarea {
   pointer-events: auto;
 }
 
-/* Map Loading Overlay */
-.map-loading-indicator {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* ==========================================================================
+   MerkadoGo Official Splash Loading Screen (Faithful to Main Mobile App)
+   ========================================================================== */
+.app-splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #1B5E20;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-md);
-  color: var(--color-ink-muted);
-  font-weight: 500;
-  font-size: 15px;
+  justify-content: space-between;
+  overflow: hidden;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+}
+
+.app-splash-screen.is-fade-out {
+  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
 }
 
-.spinner {
-  width: 36px;
-  height: 36px;
-  border: 3px solid var(--color-border);
-  border-top-color: var(--color-primary);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+/* Background Geometric Ambient Shapes */
+.splash-bg-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.splash-circle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.splash-circle--1 {
+  width: 280px;
+  height: 280px;
+  top: -80px;
+  right: -80px;
+}
+
+.splash-circle--2 {
+  width: 180px;
+  height: 180px;
+  top: -40px;
+  right: -40px;
+}
+
+.splash-circle--3 {
+  width: 320px;
+  height: 320px;
+  bottom: -100px;
+  left: -100px;
+}
+
+.splash-circle--4 {
+  width: 200px;
+  height: 200px;
+  bottom: -60px;
+  left: -60px;
+}
+
+/* 4x4 Dot Grids matching Flutter _buildDotGrid */
+.splash-dot-grid {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(4, 4px);
+  grid-template-rows: repeat(4, 4px);
+  gap: 8px;
+  pointer-events: none;
+}
+
+.splash-dot-grid span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.splash-dot-grid--top-left {
+  top: 80px;
+  left: 24px;
+}
+
+.splash-dot-grid--bottom-right {
+  bottom: 120px;
+  right: 24px;
+}
+
+/* Double Wave Baseline matching Flutter _WavePainter */
+.splash-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 160px;
+  pointer-events: none;
+}
+
+/* Full Splash Content Container (SafeArea Layout) */
+.splash-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: env(safe-area-inset-top, 24px) 24px calc(48px + env(safe-area-inset-bottom, 0px));
+}
+
+/* Main Upper Content Column (Expanded Flex 8 in Flutter) */
+.splash-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: splashContentEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes splashContentEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating 150x150 Logo Card with Dual Drop Shadows */
+.splash-card {
+  width: 150px;
+  height: 150px;
+  background: #FFFFFF;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 
+    0 12px 30px rgba(0, 0, 0, 0.25), 
+    0 4px 40px rgba(76, 175, 80, 0.30);
+  margin-bottom: 28px;
+}
+
+.splash-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Two-Tone Wordmark: Poppins 36px w800 */
+.splash-title {
+  margin: 0 0 10px 0;
+  font-family: var(--font-display, 'Poppins', system-ui, sans-serif);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.splash-merkado {
+  color: #FFFFFF;
+}
+
+.splash-go {
+  color: #E53935;
+}
+
+/* Centered Subtitle Badge with 30px Hairline Accents */
+.splash-subtitle-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.splash-divider {
+  width: 30px;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.30);
+}
+
+.splash-subtitle {
+  font-family: var(--font-body, 'Poppins', system-ui, sans-serif);
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.60);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Bottom Loader Group: Bouncing Triple Dots & Letterspaced Tracking */
+.splash-loader-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: splashLoaderFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes splashLoaderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.splash-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.splash-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  opacity: 0.38;
+  animation: splashDotBounce 0.8s ease-in-out infinite alternate;
+}
+
+.splash-dot:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.splash-dot:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+@keyframes splashDotBounce {
+  0% {
+    opacity: 0.38;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+}
+
+.splash-loading-text {
+  font-family: var(--font-body, 'Poppins', system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.38);
+  text-transform: uppercase;
 }
 
 /* ==========================================================================
@@ -975,19 +1211,27 @@ button, input, select, textarea {
   bottom: var(--spacing-md);
   width: calc(100% - 32px);
   max-width: 440px;
-  max-height: 60vh;
+  max-height: 64vh;
   z-index: 15;
-  padding: var(--spacing-md);
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
-  overflow-y: auto;
+  overflow: hidden;
+  box-sizing: border-box;
   transition: transform 160ms cubic-bezier(0.2, 0, 0.2, 1);
 }
 
 @media (max-width: 768px) {
   .navigation-panel {
     bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-panel {
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
   }
 }
 
@@ -1125,7 +1369,82 @@ button, input, select, textarea {
 .panel-expanded-content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  height: 100%;
+  max-height: 64vh;
+  overflow: hidden;
+}
+
+/* Full-bleed photo banner header matching stall-detail-card */
+.nav-stall-photo-wrapper {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  background-color: var(--color-surface-dim);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* Floating Navigation Action Controls on Photo Banner */
+.nav-photo-floating-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+}
+
+.btn-nav-floating {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background-color 0.12s ease, transform 0.08s ease, color 0.12s ease;
+}
+
+.btn-nav-floating:hover {
+  background-color: #FFFFFF;
+  color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+.btn-nav-floating:active {
+  transform: scale(0.95);
+}
+
+.btn-nav-floating--close {
+  color: var(--color-error);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.btn-nav-floating--close:hover {
+  background-color: #FEE2E2;
+  color: var(--color-error);
+  border-color: rgba(229, 57, 53, 0.3);
+}
+
+/* Scrollable expanded content area below photo banner */
+.nav-expanded-body {
+  padding: 12px var(--spacing-md) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 }
 
 .panel-header-actions {
@@ -1195,9 +1514,27 @@ button, input, select, textarea {
   flex: 1;
 }
 
+.nav-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-nav-indicator {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  border-color: rgba(27, 94, 32, 0.2);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
 .panel-title-group .title-section {
   font-family: var(--font-display);
-  font-size: 15.5px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--color-ink);
   line-height: 1.25;
@@ -1208,17 +1545,6 @@ button, input, select, textarea {
   color: var(--color-ink-muted);
   line-height: 1.35;
   word-break: break-word;
-}
-
-.nav-stall-photo-wrapper {
-  position: relative;
-  width: 100%;
-  height: 110px;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background-color: var(--color-surface-dim);
-  border: 1px solid var(--color-border);
-  flex-shrink: 0;
 }
 
 .panel-origin-selector {
@@ -1285,8 +1611,7 @@ button, input, select, textarea {
 }
 
 .panel-instructions-container {
-  max-height: 200px;
-  overflow-y: auto;
+  overflow: visible;
 }
 
 .instructions-list {
@@ -1480,14 +1805,21 @@ button, input, select, textarea {
 }
 
 /* Arm walk cycle (swings opposite to legs) */
+.route-walking-avatar .walker-arm-walking {
+  display: block;
+}
+.route-walking-avatar .walker-arm-waving {
+  display: none;
+}
+
 .route-walking-avatar.is-walking .walker-arm--left {
   animation: walkerArmSwingLeft 0.32s ease-in-out infinite alternate;
-  transform-origin: -7.5px -7.5px;
+  transform-origin: -7px -5px;
 }
 
 .route-walking-avatar.is-walking .walker-arm--right {
   animation: walkerArmSwingRight 0.32s ease-in-out infinite alternate;
-  transform-origin: 7.5px -7.5px;
+  transform-origin: 6px -5px;
 }
 
 @keyframes walkerArmSwingLeft {
@@ -1519,22 +1851,31 @@ button, input, select, textarea {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(-2.5px);
+    transform: translateY(-2.2px);
   }
 }
 
 /* --- Arrival Celebration State --- */
-.route-walking-avatar.is-arrived .walker-arm--right {
-  animation: walkerArrivalWave 0.5s ease-in-out infinite alternate;
-  transform-origin: 7.5px -7.5px;
+.route-walking-avatar.is-arrived .walker-arm-walking {
+  display: none;
 }
 
-@keyframes walkerArrivalWave {
+.route-walking-avatar.is-arrived .walker-arm-waving {
+  display: block;
+}
+
+.route-walking-avatar.is-arrived .walker-wave-forearm,
+.route-walking-avatar.is-arrived .walker-wave-hand {
+  animation: walkerHandWave 0.45s ease-in-out infinite alternate;
+  transform-origin: 8.5px -6.5px;
+}
+
+@keyframes walkerHandWave {
   0% {
-    transform: rotate(-125deg);
+    transform: rotate(-8deg);
   }
   100% {
-    transform: rotate(-155deg);
+    transform: rotate(14deg);
   }
 }
 
@@ -1562,33 +1903,14 @@ button, input, select, textarea {
   .route-walking-avatar.is-walking .walker-arm--right,
   .route-walking-avatar.is-walking .walker-body-group,
   .route-walking-avatar.is-walking .walker-shadow,
-  .route-walking-avatar.is-arrived .walker-arm--right,
+  .route-walking-avatar.is-arrived .walker-wave-forearm,
+  .route-walking-avatar.is-arrived .walker-wave-hand,
   .route-walking-avatar.is-arrived .walker-body-group,
   .avatar-pulse-halo {
     animation: none !important;
   }
 }
 
-/* Destination Arrival Celebration Ring */
-.destination-arrival-pulse {
-  fill: rgba(229, 57, 53, 0.25);
-  animation: destArrivalPulse 1.6s ease-out infinite;
-}
-
-@keyframes destArrivalPulse {
-  0% {
-    r: 32;
-    opacity: 0.9;
-  }
-  70% {
-    r: 120;
-    opacity: 0;
-  }
-  100% {
-    r: 120;
-    opacity: 0;
-  }
-}
 
 /* Floating Skip Animation Button */
 /* Floating Skip Animation Button (Task 4.8) - Anchored at bottom center */

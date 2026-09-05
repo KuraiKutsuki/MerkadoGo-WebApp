@@ -205,165 +205,351 @@ function createWalkingAvatar() {
   const avatarGroup = document.createElementNS(NS, 'g');
   avatarGroup.setAttribute('class', 'route-walking-avatar is-walking');
 
-  // Scaler group: scales the pedestrian character prominently (~4.0x) for ideal corridor proportions
+  // Scaler group: scaled to 3.5x for crisp corridor visibility with balanced anatomy
   const scaler = document.createElementNS(NS, 'g');
   scaler.setAttribute('class', 'walker-scaler');
-  scaler.setAttribute('transform', 'scale(4.0)');
+  scaler.setAttribute('transform', 'scale(3.5)');
 
   // 1. Soft glowing aura underneath
   const halo = document.createElementNS(NS, 'circle');
   halo.setAttribute('class', 'avatar-pulse-halo');
   halo.setAttribute('cx', '0');
-  halo.setAttribute('cy', '-3');
-  halo.setAttribute('r', '26');
+  halo.setAttribute('cy', '-2');
+  halo.setAttribute('r', '24');
   scaler.appendChild(halo);
 
-  // 2. Ground shadow that breathes with steps
+  // 2. Ground shadow that responds to step rhythm
   const shadow = document.createElementNS(NS, 'ellipse');
   shadow.setAttribute('class', 'walker-shadow');
   shadow.setAttribute('cx', '0');
-  shadow.setAttribute('cy', '16');
-  shadow.setAttribute('rx', '15');
-  shadow.setAttribute('ry', '5.5');
+  shadow.setAttribute('cy', '15.5');
+  shadow.setAttribute('rx', '13');
+  shadow.setAttribute('ry', '4.5');
   scaler.appendChild(shadow);
 
   // 3. Inner visual container that flips dynamically based on horizontal heading
   const visual = document.createElementNS(NS, 'g');
   visual.setAttribute('class', 'walker-visual');
 
-  // Left Leg (back leg in walk-cycle)
+  // --- Left Leg (Back leg in walk-cycle) ---
   const leftLeg = document.createElementNS(NS, 'g');
   leftLeg.setAttribute('class', 'walker-leg walker-leg--left');
-  const leftLegPants = document.createElementNS(NS, 'line');
-  leftLegPants.setAttribute('x1', '-4');
-  leftLegPants.setAttribute('y1', '2');
-  leftLegPants.setAttribute('x2', '-4');
-  leftLegPants.setAttribute('y2', '14');
-  leftLegPants.setAttribute('stroke', '#144618');
-  leftLegPants.setAttribute('stroke-width', '4');
-  leftLegPants.setAttribute('stroke-linecap', 'round');
-  const leftShoe = document.createElementNS(NS, 'path');
-  leftShoe.setAttribute('d', 'M -6 13 L -1 13 L 2 16 L -7 16 Z');
-  leftShoe.setAttribute('fill', '#0B240D');
+
+  const leftLegPants = document.createElementNS(NS, 'path');
+  leftLegPants.setAttribute('d', 'M -5 1.5 L -4.5 11.5 L -1.5 11.5 L -2 1.5 Z');
+  leftLegPants.setAttribute('fill', '#143818');
+
+  const leftShoe = document.createElementNS(NS, 'g');
+  leftShoe.setAttribute('class', 'walker-shoe');
+  const leftShoeUpper = document.createElementNS(NS, 'path');
+  leftShoeUpper.setAttribute('d', 'M -5.2 11 L -1.2 11 L 0 13.2 L -6 13.2 Z');
+  leftShoeUpper.setAttribute('fill', '#1E293B');
+  const leftShoeSole = document.createElementNS(NS, 'rect');
+  leftShoeSole.setAttribute('x', '-6.5');
+  leftShoeSole.setAttribute('y', '13.2');
+  leftShoeSole.setAttribute('width', '6.8');
+  leftShoeSole.setAttribute('height', '2.2');
+  leftShoeSole.setAttribute('rx', '1');
+  leftShoeSole.setAttribute('fill', '#FFFFFF');
+  leftShoeSole.setAttribute('stroke', '#E2E8F0');
+  leftShoeSole.setAttribute('stroke-width', '0.4');
+  leftShoe.appendChild(leftShoeUpper);
+  leftShoe.appendChild(leftShoeSole);
+
   leftLeg.appendChild(leftLegPants);
   leftLeg.appendChild(leftShoe);
 
-  // Right Leg (front leg in walk-cycle)
-  const rightLeg = document.createElementNS(NS, 'g');
-  rightLeg.setAttribute('class', 'walker-leg walker-leg--right');
-  const rightLegPants = document.createElementNS(NS, 'line');
-  rightLegPants.setAttribute('x1', '4');
-  rightLegPants.setAttribute('y1', '2');
-  rightLegPants.setAttribute('x2', '4');
-  rightLegPants.setAttribute('y2', '14');
-  rightLegPants.setAttribute('stroke', '#1B5E20');
-  rightLegPants.setAttribute('stroke-width', '4');
-  rightLegPants.setAttribute('stroke-linecap', 'round');
-  const rightShoe = document.createElementNS(NS, 'path');
-  rightShoe.setAttribute('d', 'M 1 13 L 6 13 L 9 16 L 0 16 Z');
-  rightShoe.setAttribute('fill', '#0B240D');
-  rightLeg.appendChild(rightLegPants);
-  rightLeg.appendChild(rightShoe);
+  // --- Left Arm (Back arm, swings counter-rhythm) ---
+  const leftArm = document.createElementNS(NS, 'g');
+  leftArm.setAttribute('class', 'walker-arm walker-arm--left');
+  const leftSleeve = document.createElementNS(NS, 'line');
+  leftSleeve.setAttribute('x1', '-6');
+  leftSleeve.setAttribute('y1', '-7.5');
+  leftSleeve.setAttribute('x2', '-7');
+  leftSleeve.setAttribute('y2', '-3');
+  leftSleeve.setAttribute('stroke', '#1B5E20');
+  leftSleeve.setAttribute('stroke-width', '3');
+  leftSleeve.setAttribute('stroke-linecap', 'round');
 
-  // Body Group (torso, tote bag, neck, head, cap)
+  const leftForearm = document.createElementNS(NS, 'line');
+  leftForearm.setAttribute('x1', '-7');
+  leftForearm.setAttribute('y1', '-3');
+  leftForearm.setAttribute('x2', '-8.5');
+  leftForearm.setAttribute('y2', '2.5');
+  leftForearm.setAttribute('stroke', '#F5D0A9');
+  leftForearm.setAttribute('stroke-width', '2.6');
+  leftForearm.setAttribute('stroke-linecap', 'round');
+
+  const leftHand = document.createElementNS(NS, 'circle');
+  leftHand.setAttribute('cx', '-8.5');
+  leftHand.setAttribute('cy', '2.5');
+  leftHand.setAttribute('r', '1.6');
+  leftHand.setAttribute('fill', '#F5D0A9');
+
+  leftArm.appendChild(leftSleeve);
+  leftArm.appendChild(leftForearm);
+  leftArm.appendChild(leftHand);
+
+  // --- Torso & Body Group ---
   const bodyGroup = document.createElementNS(NS, 'g');
   bodyGroup.setAttribute('class', 'walker-body-group');
 
-  // Torso / Polo shirt (#2E7D32 with white collar trim)
+  // Neck
+  const neck = document.createElementNS(NS, 'rect');
+  neck.setAttribute('x', '-2');
+  neck.setAttribute('y', '-11.5');
+  neck.setAttribute('width', '4');
+  neck.setAttribute('height', '3.5');
+  neck.setAttribute('rx', '1');
+  neck.setAttribute('fill', '#E8BA8A');
+
+  // Polo Shirt Torso (#2E7D32 with clean tailoring)
   const torso = document.createElementNS(NS, 'path');
   torso.setAttribute('class', 'walker-torso');
-  torso.setAttribute('d', 'M -7.5 2 L -8.5 -10 C -8.5 -13, 8.5 -13, 8.5 -10 L 7.5 2 Z');
+  torso.setAttribute('d', 'M -6.5 1.5 L -7.5 -8.5 C -7.5 -10.5, 7.5 -10.5, 7.5 -8.5 L 6.5 1.5 Z');
   torso.setAttribute('fill', '#2E7D32');
   torso.setAttribute('stroke', '#1B5E20');
-  torso.setAttribute('stroke-width', '1.2');
+  torso.setAttribute('stroke-width', '0.8');
 
-  // Crimson Red Market Tote Bag slung across body (#E53935)
+  // Crisp White Collar & Button Placket
+  const collar = document.createElementNS(NS, 'path');
+  collar.setAttribute('d', 'M -3.2 -9.5 L 0 -6 L 3.2 -9.5 L 2.2 -10.8 L -2.2 -10.8 Z');
+  collar.setAttribute('fill', '#FFFFFF');
+
+  const placket = document.createElementNS(NS, 'line');
+  placket.setAttribute('x1', '0');
+  placket.setAttribute('y1', '-6');
+  placket.setAttribute('x2', '0');
+  placket.setAttribute('y2', '-1.5');
+  placket.setAttribute('stroke', '#1B5E20');
+  placket.setAttribute('stroke-width', '1.2');
+  placket.setAttribute('stroke-linecap', 'round');
+
+  const btn1 = document.createElementNS(NS, 'circle');
+  btn1.setAttribute('cx', '0');
+  btn1.setAttribute('cy', '-4.5');
+  btn1.setAttribute('r', '0.5');
+  btn1.setAttribute('fill', '#FFFFFF');
+
+  const btn2 = document.createElementNS(NS, 'circle');
+  btn2.setAttribute('cx', '0');
+  btn2.setAttribute('cy', '-2.5');
+  btn2.setAttribute('r', '0.5');
+  btn2.setAttribute('fill', '#FFFFFF');
+
+  // Crimson Red Cross-Body Market Tote Bag (Bayong)
   const toteBag = document.createElementNS(NS, 'g');
   toteBag.setAttribute('class', 'walker-tote');
-  const toteStrap = document.createElementNS(NS, 'line');
-  toteStrap.setAttribute('x1', '-6');
-  toteStrap.setAttribute('y1', '-9');
-  toteStrap.setAttribute('x2', '5');
-  toteStrap.setAttribute('y2', '0');
+
+  const toteStrap = document.createElementNS(NS, 'path');
+  toteStrap.setAttribute('d', 'M -6.5 -9 L 3.5 0.5');
   toteStrap.setAttribute('stroke', '#B71C1C');
-  toteStrap.setAttribute('stroke-width', '1.8');
+  toteStrap.setAttribute('stroke-width', '1.6');
+  toteStrap.setAttribute('stroke-linecap', 'round');
+
+  // Rounded stylish tote body at hip
   const toteBody = document.createElementNS(NS, 'rect');
-  toteBody.setAttribute('x', '1.5');
-  toteBody.setAttribute('y', '-2');
-  toteBody.setAttribute('width', '9.5');
-  toteBody.setAttribute('height', '10.5');
-  toteBody.setAttribute('rx', '2');
+  toteBody.setAttribute('x', '0');
+  toteBody.setAttribute('y', '-1');
+  toteBody.setAttribute('width', '8.5');
+  toteBody.setAttribute('height', '9.5');
+  toteBody.setAttribute('rx', '2.2');
   toteBody.setAttribute('fill', '#E53935');
-  toteBody.setAttribute('stroke', '#FFFFFF');
-  toteBody.setAttribute('stroke-width', '1');
+  toteBody.setAttribute('stroke', '#B71C1C');
+  toteBody.setAttribute('stroke-width', '0.6');
+
+  // White tote handle loops
+  const toteHandle = document.createElementNS(NS, 'path');
+  toteHandle.setAttribute('d', 'M 2 -1 C 2 -2.8, 6.5 -2.8, 6.5 -1');
+  toteHandle.setAttribute('fill', 'none');
+  toteHandle.setAttribute('stroke', '#FFFFFF');
+  toteHandle.setAttribute('stroke-width', '0.8');
+  toteHandle.setAttribute('stroke-linecap', 'round');
+
+  // White circular emblem with green leaf motif
+  const toteEmblem = document.createElementNS(NS, 'circle');
+  toteEmblem.setAttribute('cx', '4.2');
+  toteEmblem.setAttribute('cy', '4');
+  toteEmblem.setAttribute('r', '1.8');
+  toteEmblem.setAttribute('fill', '#FFFFFF');
+
+  const toteLeaf = document.createElementNS(NS, 'path');
+  toteLeaf.setAttribute('d', 'M 4.2 3.0 C 4.9 3.5, 4.9 4.5, 4.2 5.0 C 3.5 4.5, 3.5 3.5, 4.2 3.0 Z');
+  toteLeaf.setAttribute('fill', '#1B5E20');
+
   toteBag.appendChild(toteStrap);
   toteBag.appendChild(toteBody);
+  toteBag.appendChild(toteHandle);
+  toteBag.appendChild(toteEmblem);
+  toteBag.appendChild(toteLeaf);
 
-  // Head with warm tone and white stroke outline
+  // --- Head & Sporty Cap (Clean Pristine Faceless Design) ---
+  const headGroup = document.createElementNS(NS, 'g');
+  headGroup.setAttribute('class', 'walker-head-group');
+
+  // Base head - smooth warm skin tone, completely faceless
   const head = document.createElementNS(NS, 'circle');
   head.setAttribute('class', 'walker-head');
   head.setAttribute('cx', '0');
-  head.setAttribute('cy', '-17.5');
-  head.setAttribute('r', '7');
+  head.setAttribute('cy', '-16.5');
+  head.setAttribute('r', '6.6');
   head.setAttribute('fill', '#F5D0A9');
-  head.setAttribute('stroke', '#FFFFFF');
-  head.setAttribute('stroke-width', '1.4');
 
-  // Forest Green Cap
-  const cap = document.createElementNS(NS, 'path');
-  cap.setAttribute('class', 'walker-cap');
-  cap.setAttribute('d', 'M -7 -18.5 C -7 -25, 7 -25, 7 -18.5 L 9.5 -17 Q 0 -20 -7 -18 Z');
-  cap.setAttribute('fill', '#1B5E20');
+  // Forest Green Sporty Cap
+  const capCrown = document.createElementNS(NS, 'path');
+  capCrown.setAttribute('class', 'walker-cap-crown');
+  capCrown.setAttribute('d', 'M -6.6 -18 C -7.2 -24.5, 4.5 -25.5, 6.0 -18.5 C 3.2 -19.8, -3.5 -19.5, -6.6 -18 Z');
+  capCrown.setAttribute('fill', '#1B5E20');
 
+  const capPanel = document.createElementNS(NS, 'path');
+  capPanel.setAttribute('d', 'M -2 -19 C -1.5 -24, 4.2 -24, 5.2 -18.5 Z');
+  capPanel.setAttribute('fill', '#2E7D32');
+  capPanel.setAttribute('opacity', '0.8');
+
+  // Curved visor pointing forward
+  const capVisor = document.createElementNS(NS, 'path');
+  capVisor.setAttribute('class', 'walker-cap-visor');
+  capVisor.setAttribute('d', 'M 3.8 -19 C 6 -20.2, 9.6 -19.8, 11 -17.2 C 9 -17, 5.5 -17.5, 3.2 -17.8 Z');
+  capVisor.setAttribute('fill', '#144618');
+
+  // Button on top
+  const capButton = document.createElementNS(NS, 'circle');
+  capButton.setAttribute('cx', '-0.5');
+  capButton.setAttribute('cy', '-24.2');
+  capButton.setAttribute('r', '0.9');
+  capButton.setAttribute('fill', '#FFFFFF');
+
+  headGroup.appendChild(head);
+  headGroup.appendChild(capCrown);
+  headGroup.appendChild(capPanel);
+  headGroup.appendChild(capVisor);
+  headGroup.appendChild(capButton);
+
+  bodyGroup.appendChild(neck);
   bodyGroup.appendChild(torso);
-  bodyGroup.appendChild(toteBag);
-  bodyGroup.appendChild(head);
-  bodyGroup.appendChild(cap);
+  bodyGroup.appendChild(collar);
+  bodyGroup.appendChild(placket);
+  bodyGroup.appendChild(btn1);
+  bodyGroup.appendChild(btn2);
 
-  // Left Arm (swinging)
-  const leftArm = document.createElementNS(NS, 'g');
-  leftArm.setAttribute('class', 'walker-arm walker-arm--left');
-  const leftArmLimb = document.createElementNS(NS, 'line');
-  leftArmLimb.setAttribute('x1', '-7.5');
-  leftArmLimb.setAttribute('y1', '-7.5');
-  leftArmLimb.setAttribute('x2', '-10');
-  leftArmLimb.setAttribute('y2', '1.5');
-  leftArmLimb.setAttribute('stroke', '#1B5E20');
-  leftArmLimb.setAttribute('stroke-width', '3');
-  leftArmLimb.setAttribute('stroke-linecap', 'round');
-  const leftHand = document.createElementNS(NS, 'circle');
-  leftHand.setAttribute('cx', '-10');
-  leftHand.setAttribute('cy', '2');
-  leftHand.setAttribute('r', '1.8');
-  leftHand.setAttribute('fill', '#F5D0A9');
-  leftArm.appendChild(leftArmLimb);
-  leftArm.appendChild(leftHand);
+  // --- Right Leg (Front leg) ---
+  const rightLeg = document.createElementNS(NS, 'g');
+  rightLeg.setAttribute('class', 'walker-leg walker-leg--right');
 
-  // Right Arm (swinging / waving)
+  const rightLegPants = document.createElementNS(NS, 'path');
+  rightLegPants.setAttribute('d', 'M 1 1.5 L 1.5 11.5 L 4.5 11.5 L 4 1.5 Z');
+  rightLegPants.setAttribute('fill', '#1B4D20');
+
+  const rightShoe = document.createElementNS(NS, 'g');
+  rightShoe.setAttribute('class', 'walker-shoe');
+  const rightShoeUpper = document.createElementNS(NS, 'path');
+  rightShoeUpper.setAttribute('d', 'M 0.8 11 L 4.8 11 L 6.5 13.2 L 0 13.2 Z');
+  rightShoeUpper.setAttribute('fill', '#1E293B');
+  const rightShoeSole = document.createElementNS(NS, 'rect');
+  rightShoeSole.setAttribute('x', '-0.5');
+  rightShoeSole.setAttribute('y', '13.2');
+  rightShoeSole.setAttribute('width', '7.4');
+  rightShoeSole.setAttribute('height', '2.2');
+  rightShoeSole.setAttribute('rx', '1');
+  rightShoeSole.setAttribute('fill', '#FFFFFF');
+  rightShoeSole.setAttribute('stroke', '#E2E8F0');
+  rightShoeSole.setAttribute('stroke-width', '0.4');
+  rightShoe.appendChild(rightShoeUpper);
+  rightShoe.appendChild(rightShoeSole);
+
+  rightLeg.appendChild(rightLegPants);
+  rightLeg.appendChild(rightShoe);
+
+  // --- Right Arm (Dual-Mode: Walking Swing vs. Simple Clean Wave) ---
   const rightArm = document.createElementNS(NS, 'g');
   rightArm.setAttribute('class', 'walker-arm walker-arm--right');
-  const rightArmLimb = document.createElementNS(NS, 'line');
-  rightArmLimb.setAttribute('x1', '7.5');
-  rightArmLimb.setAttribute('y1', '-7.5');
-  rightArmLimb.setAttribute('x2', '10');
-  rightArmLimb.setAttribute('y2', '1.5');
-  rightArmLimb.setAttribute('stroke', '#2E7D32');
-  rightArmLimb.setAttribute('stroke-width', '3');
-  rightArmLimb.setAttribute('stroke-linecap', 'round');
-  const rightHand = document.createElementNS(NS, 'circle');
-  rightHand.setAttribute('cx', '10');
-  rightHand.setAttribute('cy', '2');
-  rightHand.setAttribute('r', '1.8');
-  rightHand.setAttribute('fill', '#F5D0A9');
-  rightArm.appendChild(rightArmLimb);
-  rightArm.appendChild(rightHand);
+
+  // 1. Walking Arm Pose
+  const rightArmWalking = document.createElementNS(NS, 'g');
+  rightArmWalking.setAttribute('class', 'walker-arm-walking');
+
+  const rightSleeveW = document.createElementNS(NS, 'line');
+  rightSleeveW.setAttribute('x1', '6');
+  rightSleeveW.setAttribute('y1', '-7.5');
+  rightSleeveW.setAttribute('x2', '7');
+  rightSleeveW.setAttribute('y2', '-3');
+  rightSleeveW.setAttribute('stroke', '#2E7D32');
+  rightSleeveW.setAttribute('stroke-width', '3');
+  rightSleeveW.setAttribute('stroke-linecap', 'round');
+
+  const rightForearmW = document.createElementNS(NS, 'line');
+  rightForearmW.setAttribute('x1', '7');
+  rightForearmW.setAttribute('y1', '-3');
+  rightForearmW.setAttribute('x2', '8.5');
+  rightForearmW.setAttribute('y2', '2.5');
+  rightForearmW.setAttribute('stroke', '#F5D0A9');
+  rightForearmW.setAttribute('stroke-width', '2.6');
+  rightForearmW.setAttribute('stroke-linecap', 'round');
+
+  const rightHandW = document.createElementNS(NS, 'circle');
+  rightHandW.setAttribute('cx', '8.5');
+  rightHandW.setAttribute('cy', '2.5');
+  rightHandW.setAttribute('r', '1.6');
+  rightHandW.setAttribute('fill', '#F5D0A9');
+
+  rightArmWalking.appendChild(rightSleeveW);
+  rightArmWalking.appendChild(rightForearmW);
+  rightArmWalking.appendChild(rightHandW);
+
+  // 2. Arrival Greeting Waving Arm Pose (Simple natural bent arm beside head)
+  const rightArmWaving = document.createElementNS(NS, 'g');
+  rightArmWaving.setAttribute('class', 'walker-arm-waving');
+
+  // Sleeve at shoulder
+  const waveSleeve = document.createElementNS(NS, 'line');
+  waveSleeve.setAttribute('x1', '6');
+  waveSleeve.setAttribute('y1', '-7.5');
+  waveSleeve.setAttribute('x2', '8.5');
+  waveSleeve.setAttribute('y2', '-6.5');
+  waveSleeve.setAttribute('stroke', '#2E7D32');
+  waveSleeve.setAttribute('stroke-width', '3');
+  waveSleeve.setAttribute('stroke-linecap', 'round');
+
+  // Forearm bent upward beside head (from elbow 8.5,-6.5 to hand 8,-13.5)
+  const waveForearm = document.createElementNS(NS, 'line');
+  waveForearm.setAttribute('class', 'walker-wave-forearm');
+  waveForearm.setAttribute('x1', '8.5');
+  waveForearm.setAttribute('y1', '-6.5');
+  waveForearm.setAttribute('x2', '8');
+  waveForearm.setAttribute('y2', '-13.5');
+  waveForearm.setAttribute('stroke', '#F5D0A9');
+  waveForearm.setAttribute('stroke-width', '2.6');
+  waveForearm.setAttribute('stroke-linecap', 'round');
+
+  // Hand circle right beside cheek/ear level
+  const waveHand = document.createElementNS(NS, 'circle');
+  waveHand.setAttribute('class', 'walker-wave-hand');
+  waveHand.setAttribute('cx', '8');
+  waveHand.setAttribute('cy', '-13.8');
+  waveHand.setAttribute('r', '1.6');
+  waveHand.setAttribute('fill', '#F5D0A9');
+
+  rightArmWaving.appendChild(waveSleeve);
+  rightArmWaving.appendChild(waveForearm);
+  rightArmWaving.appendChild(waveHand);
+
+  rightArm.appendChild(rightArmWalking);
+  rightArm.appendChild(rightArmWaving);
 
   // Assemble visual (Back-to-front rendering order):
-  // left arm -> left leg -> body group -> right leg -> right arm
+  // 1. leftArm (swings behind body)
+  // 2. leftLeg (back leg)
+  // 3. bodyGroup (neck, torso, polo collar, placket, buttons)
+  // 4. rightLeg (front leg, strides naturally behind the hip bag)
+  // 5. toteBag (market tote slung across shoulder, rests on the hip OVER the leg)
+  // 6. headGroup (clean pristine faceless head with sporty cap)
+  // 7. rightArm (front arm swinging or waving)
   visual.appendChild(leftArm);
   visual.appendChild(leftLeg);
   visual.appendChild(bodyGroup);
   visual.appendChild(rightLeg);
+  visual.appendChild(toteBag);
+  visual.appendChild(headGroup);
   visual.appendChild(rightArm);
 
   scaler.appendChild(visual);
@@ -375,29 +561,49 @@ function createWalkingAvatar() {
   const bubbleBg = document.createElementNS(NS, 'rect');
   bubbleBg.setAttribute('class', 'walker-bubble-bg');
   bubbleBg.setAttribute('x', '-58');
-  bubbleBg.setAttribute('y', '-48');
+  bubbleBg.setAttribute('y', '-54');
   bubbleBg.setAttribute('width', '116');
   bubbleBg.setAttribute('height', '24');
   bubbleBg.setAttribute('rx', '12');
 
   const bubbleTail = document.createElementNS(NS, 'polygon');
   bubbleTail.setAttribute('class', 'walker-bubble-tail');
-  bubbleTail.setAttribute('points', '-4,-24 4,-24 0,-18');
+  bubbleTail.setAttribute('points', '-4,-30 4,-30 0,-25');
+
+  // Vector Destination Pin Icon for Arrival State (Pure SVG, zero emojis as per Impeccable guidelines)
+  const bubbleIcon = document.createElementNS(NS, 'g');
+  bubbleIcon.setAttribute('class', 'walker-bubble-icon');
+  bubbleIcon.style.display = 'none';
+
+  // Optically elevated & vertically centered: top -47.7, tip -36.5, head center -43.5
+  const pinPath = document.createElementNS(NS, 'path');
+  pinPath.setAttribute('d', 'M -23.5 -47.7 C -25.8 -47.7, -27.7 -45.8, -27.7 -43.5 C -27.7 -40.5, -23.5 -36.5, -23.5 -36.5 C -23.5 -36.5, -19.3 -40.5, -19.3 -43.5 C -19.3 -45.8, -21.2 -47.7, -23.5 -47.7 Z');
+  pinPath.setAttribute('fill', '#E53935');
+
+  const pinDot = document.createElementNS(NS, 'circle');
+  pinDot.setAttribute('cx', '-23.5');
+  pinDot.setAttribute('cy', '-43.5');
+  pinDot.setAttribute('r', '1.35');
+  pinDot.setAttribute('fill', '#FFFFFF');
+
+  bubbleIcon.appendChild(pinPath);
+  bubbleIcon.appendChild(pinDot);
 
   const bubbleText = document.createElementNS(NS, 'text');
   bubbleText.setAttribute('class', 'walker-bubble-text');
   bubbleText.setAttribute('x', '0');
-  bubbleText.setAttribute('y', '-35');
+  bubbleText.setAttribute('y', '-41');
   bubbleText.setAttribute('text-anchor', 'middle');
   bubbleText.setAttribute('dominant-baseline', 'middle');
 
   bubble.appendChild(bubbleBg);
   bubble.appendChild(bubbleTail);
+  bubble.appendChild(bubbleIcon);
   bubble.appendChild(bubbleText);
   scaler.appendChild(bubble);
 
   avatarGroup.appendChild(scaler);
-  return { avatarGroup, visual, bubble, bubbleBg, bubbleText };
+  return { avatarGroup, visual, bubble, bubbleBg, bubbleIcon, bubbleText };
 }
 
 export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, options = {}) {
@@ -456,16 +662,6 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
   dottedPath.setAttribute('d', d);
   routeLayer.appendChild(dottedPath);
 
-  // 3. Destination arrival pulse ring inside stall
-  const destPulse = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-  destPulse.setAttribute('class', 'destination-arrival-pulse');
-  const finalCoord = coords[coords.length - 1];
-  destPulse.setAttribute('cx', finalCoord.x.toFixed(2));
-  destPulse.setAttribute('cy', finalCoord.y.toFixed(2));
-  destPulse.setAttribute('r', '24');
-  destPulse.style.display = 'none';
-  routeLayer.appendChild(destPulse);
-
   const totalLength = dottedPath.getTotalLength();
   const prefersReducedMotion = typeof window !== 'undefined' && 
     window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
@@ -477,7 +673,6 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     trackCasing.style.strokeDashoffset = '0';
     dottedPath.style.strokeDasharray = 'none';
     dottedPath.style.strokeDashoffset = '0';
-    destPulse.style.display = 'block';
     if (typeof options.onComplete === 'function') {
       options.onComplete();
     }
@@ -485,7 +680,7 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
   }
 
   // 4. Pedestrian Walking Vector Avatar (Animated Person Walk Cycle)
-  const { avatarGroup, visual, bubble, bubbleBg, bubbleText } = createWalkingAvatar();
+  const { avatarGroup, visual, bubble, bubbleBg, bubbleIcon, bubbleText } = createWalkingAvatar();
 
   const startPt = dottedPath.getPointAtLength(0);
   avatarGroup.setAttribute('transform', `translate(${startPt.x.toFixed(2)}, ${startPt.y.toFixed(2)})`);
@@ -512,7 +707,7 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
         label = `1. Enter via ${shortName}`;
       } else if (step.direction === 'arrive') {
         dist = totalLength;
-        label = `🏁 Arrived!`;
+        label = `Arrived!`;
       } else {
         const idx = nodeIds.indexOf(step.nodeId);
         dist = idx >= 0 && idx < cumulativeDists.length ? cumulativeDists[idx] : 0;
@@ -527,11 +722,36 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
         }
       }
 
+      // Calculate the trigger distance for the speech bubble:
+      // - Start: triggers at 0
+      // - Arrive: triggers at destination
+      // - Turns: announce 30px before reaching the intersection
+      // - Straight: announce right as the walker enters the straight corridor
+      let triggerDist = dist;
+      if (step.direction === 'start') {
+        triggerDist = 0;
+      } else if (step.direction === 'arrive') {
+        triggerDist = Math.max(0, totalLength - 10);
+      } else if (step.direction === 'left' || step.direction === 'right' || step.direction.includes('turn')) {
+        triggerDist = Math.max(0, dist - 30);
+      } else {
+        triggerDist = dist;
+      }
+
       stepMarkers.push({
         stepNumber: step.stepNumber,
         dist,
+        triggerDist,
         label
       });
+    }
+
+    // Strict sequential pacing guarantee: ensure every consecutive step marker has
+    // at least 35px of travel distance separating them so no step is ever skipped or flashed
+    for (let i = 1; i < stepMarkers.length - 1; i++) {
+      if (stepMarkers[i].triggerDist <= stepMarkers[i - 1].triggerDist + 35) {
+        stepMarkers[i].triggerDist = stepMarkers[i - 1].triggerDist + 35;
+      }
     }
   }
 
@@ -550,16 +770,29 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
   let bubbleTimeout = null;
 
   function showStepBubble(text) {
-    const safeText = text.length > 20 ? text.slice(0, 18) + '…' : text;
+    const isArrived = text.includes('Arrived');
+    const safeText = isArrived ? 'Arrived!' : (text.length > 20 ? text.slice(0, 18) + '…' : text);
     bubbleText.textContent = safeText;
-    const textLen = safeText.length;
-    const pillWidth = Math.min(130, Math.max(72, textLen * 6.8 + 18));
-    bubbleBg.setAttribute('x', `${(-pillWidth / 2).toFixed(1)}`);
-    bubbleBg.setAttribute('width', `${pillWidth.toFixed(1)}`);
+
+    if (isArrived) {
+      bubbleIcon.style.display = 'block';
+      bubbleText.setAttribute('x', '6');
+      const pillWidth = 84;
+      bubbleBg.setAttribute('x', `${(-pillWidth / 2).toFixed(1)}`);
+      bubbleBg.setAttribute('width', `${pillWidth.toFixed(1)}`);
+    } else {
+      bubbleIcon.style.display = 'none';
+      bubbleText.setAttribute('x', '0');
+      const textLen = safeText.length;
+      const pillWidth = Math.min(130, Math.max(72, textLen * 6.8 + 18));
+      bubbleBg.setAttribute('x', `${(-pillWidth / 2).toFixed(1)}`);
+      bubbleBg.setAttribute('width', `${pillWidth.toFixed(1)}`);
+    }
+
     bubble.classList.add('is-active');
 
     if (bubbleTimeout) clearTimeout(bubbleTimeout);
-    if (!text.includes('Arrived')) {
+    if (!isArrived) {
       bubbleTimeout = setTimeout(() => {
         bubble.classList.remove('is-active');
       }, 2200);
@@ -579,13 +812,12 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     dottedPath.style.strokeDasharray = 'none';
     dottedPath.style.strokeDashoffset = '0';
 
-    // Place avatar at final destination point, trigger arrival celebration, and show arrival ripple
+    // Place avatar at final destination point and trigger arrival celebration
     const endPt = dottedPath.getPointAtLength(totalLength);
     avatarGroup.setAttribute('transform', `translate(${endPt.x.toFixed(2)}, ${endPt.y.toFixed(2)})`);
     avatarGroup.classList.remove('is-walking');
     avatarGroup.classList.add('is-arrived');
-    showStepBubble('🏁 Arrived!');
-    destPulse.style.display = 'block';
+    showStepBubble('Arrived!');
 
     if (typeof options.onComplete === 'function') {
       options.onComplete();
@@ -627,7 +859,7 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     // Dynamic Turn-by-Turn Announcement Bubble: check if walker reached any turn marker
     for (let i = 0; i < stepMarkers.length; i++) {
       const marker = stepMarkers[i];
-      if (currentDist >= Math.max(0, marker.dist - 35) && activeStepIndex < i) {
+      if (currentDist >= marker.triggerDist && activeStepIndex < i) {
         activeStepIndex = i;
         showStepBubble(marker.label);
         break;
@@ -958,11 +1190,10 @@ export async function loadAndInjectMap(container) {
       decorativeCount++;
     });
 
-    // Clear container and append the live SVG
-    if (loadingIndicator) {
-      loadingIndicator.style.display = 'none';
-    }
     container.appendChild(svgElement);
+
+    // Dismiss splash loading screen gracefully once minimum display timer has elapsed (1500ms like mobile app)
+    dismissSplashScreen(1500);
 
     console.log(`[MerkadoGo Map] Injected SVG into DOM. Indexed & styled ${stallElements.size} stalls with default unassigned palette. ${decorativeCount} decorative overlay shapes set to pointer-events: none.`);
 
@@ -981,4 +1212,28 @@ export async function loadAndInjectMap(container) {
     throw error;
   }
 }
+
+const splashInitTime = typeof performance !== 'undefined' ? performance.now() : Date.now();
+
+/**
+ * Dismisses the splash loading screen with a smooth fade-out once minimum display timer has elapsed.
+ * Mirrors Flutter's _startSplashTimer() (1500ms delay).
+ * @param {number} minDuration - Minimum milliseconds the splash screen stays visible (default: 1500)
+ */
+export function dismissSplashScreen(minDuration = 1500) {
+  const loadingIndicator = document.getElementById('map-loading');
+  if (!loadingIndicator || loadingIndicator.dataset.dismissed === 'true') return;
+
+  loadingIndicator.dataset.dismissed = 'true';
+  const elapsed = (typeof performance !== 'undefined' ? performance.now() : Date.now()) - splashInitTime;
+  const remaining = Math.max(0, minDuration - elapsed);
+
+  setTimeout(() => {
+    loadingIndicator.classList.add('is-fade-out');
+    setTimeout(() => {
+      loadingIndicator.style.display = 'none';
+    }, 600);
+  }, remaining);
+}
+
 

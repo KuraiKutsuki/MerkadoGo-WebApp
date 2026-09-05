@@ -162,7 +162,7 @@ export function generateDirections(path, nodes, options = {}) {
         direction: 'straight',
         instruction: 'Continue straight along the corridor',
         distance: straightAccumulated,
-        nodeId: path[endIndex],
+        nodeId: path[straightStartIndex],
         fromNodeId: path[straightStartIndex],
         toNodeId: path[endIndex]
       });
