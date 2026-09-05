@@ -21,7 +21,7 @@
     "x": -4799,
     "y": -159,
     "neighbors": [
-      "node_fs_t1",
+      "node_ex_t16",
       "node_dm_t2",
       "node_dm_t4"
     ]
@@ -32,7 +32,7 @@
     "neighbors": [
       "node_dm_x1",
       "node_dm_t3",
-      "node_ex_t22"
+      "node_fs_a3"
     ]
   },
   "node_dm_t5": {
@@ -52,14 +52,6 @@
       "node_dm_t4",
       "node_dm_t2",
       "node_dm_t5"
-    ]
-  },
-  "node_fs_t1": {
-    "x": -4799,
-    "y": -56,
-    "neighbors": [
-      "node_dm_t3",
-      "node_ex_t16"
     ]
   },
   "node_ea_c1": {
@@ -95,7 +87,7 @@
     "neighbors": [
       "node_ea_t2",
       "node_ea_x3",
-      "node_ex_t19"
+      "node_ea_m2"
     ]
   },
   "node_ea_t4": {
@@ -181,15 +173,16 @@
     "x": -5724,
     "y": 35,
     "neighbors": [
-      "node_ex_t18"
+      "node_ex_t18",
+      "node_ex_w4"
     ]
   },
   "node_ex_6": {
     "x": -5290,
     "y": -919,
     "neighbors": [
-      "node_ex_t18",
-      "node_ex_t22"
+      "node_ex_t22",
+      "node_ex_w1"
     ]
   },
   "node_ex_c1": {
@@ -270,7 +263,7 @@
     "neighbors": [
       "node_ex_t17",
       "node_ex_x2",
-      "node_fs_t1"
+      "node_dm_t3"
     ]
   },
   "node_ex_t17": {
@@ -279,7 +272,7 @@
     "neighbors": [
       "node_ex_t16",
       "node_ex_t18",
-      "node_ex_t6"
+      "node_ex_m1"
     ]
   },
   "node_ex_t18": {
@@ -287,17 +280,17 @@
     "y": 35,
     "neighbors": [
       "node_ex_5",
-      "node_ex_6",
-      "node_ex_t17"
+      "node_ex_t17",
+      "node_ex_w3"
     ]
   },
   "node_ex_t19": {
     "x": -3225,
     "y": -810,
     "neighbors": [
-      "node_ea_t3",
       "node_ex_3",
-      "node_ex_t20"
+      "node_ex_t20",
+      "node_ea_m1"
     ]
   },
   "node_ex_t2": {
@@ -333,8 +326,8 @@
     "neighbors": [
       "node_ex_6",
       "node_ex_c1",
-      "node_dm_t4",
-      "node_dm_t5"
+      "node_dm_t5",
+      "node_fs_a1"
     ]
   },
   "node_ex_t23": {
@@ -378,9 +371,9 @@
     "x": -5274,
     "y": 1196,
     "neighbors": [
-      "node_ex_t17",
       "node_ex_t4",
-      "node_ex_t5"
+      "node_ex_t5",
+      "node_ex_m11"
     ]
   },
   "node_ex_t7": {
@@ -494,8 +487,7 @@
     "y": 922,
     "neighbors": [
       "node_wm_t12",
-      "node_wm_t14",
-      "node_wm_x6"
+      "node_wm_t14"
     ]
   },
   "node_wm_t14": {
@@ -566,8 +558,7 @@
     "y": 488,
     "neighbors": [
       "node_wm_t21",
-      "node_wm_t9",
-      "node_wm_x31"
+      "node_wm_t9"
     ]
   },
   "node_wm_t21": {
@@ -585,7 +576,6 @@
     "neighbors": [
       "node_wm_t21",
       "node_wm_t23",
-      "node_wm_t26",
       "node_wm_x33"
     ]
   },
@@ -594,8 +584,7 @@
     "y": 488,
     "neighbors": [
       "node_wm_t22",
-      "node_wm_t24",
-      "node_wm_x34"
+      "node_wm_t24"
     ]
   },
   "node_wm_t24": {
@@ -622,7 +611,6 @@
     "neighbors": [
       "node_ex_t23",
       "node_wm_t10",
-      "node_wm_t22",
       "node_wm_x39"
     ]
   },
@@ -794,8 +782,7 @@
     "neighbors": [
       "node_wm_t6",
       "node_wm_x10",
-      "node_wm_x19",
-      "node_wm_x23"
+      "node_wm_x19"
     ]
   },
   "node_wm_x19": {
@@ -853,9 +840,7 @@
     "y": 632,
     "neighbors": [
       "node_wm_t7",
-      "node_wm_x18",
-      "node_wm_x24",
-      "node_wm_x31"
+      "node_wm_x24"
     ]
   },
   "node_wm_x24": {
@@ -942,9 +927,7 @@
     "x": -3396,
     "y": 565,
     "neighbors": [
-      "node_wm_t20",
       "node_wm_t8",
-      "node_wm_x23",
       "node_wm_x32"
     ]
   },
@@ -972,7 +955,6 @@
     "x": -3732,
     "y": 565,
     "neighbors": [
-      "node_wm_t23",
       "node_wm_x26",
       "node_wm_x33",
       "node_wm_x35"
@@ -1051,7 +1033,6 @@
     "x": -3508,
     "y": 842,
     "neighbors": [
-      "node_wm_t13",
       "node_wm_x11",
       "node_wm_x5",
       "node_wm_x7"
@@ -1085,6 +1066,165 @@
       "node_wm_t18",
       "node_wm_x14",
       "node_wm_x8"
+    ]
+  },
+  "node_ex_m1": {
+    "x": -5274,
+    "y": 416,
+    "neighbors": [
+      "node_ex_t17",
+      "node_ex_m2"
+    ]
+  },
+  "node_ex_m2": {
+    "x": -5274,
+    "y": 510,
+    "neighbors": [
+      "node_ex_m1",
+      "node_ex_m3"
+    ]
+  },
+  "node_ex_m3": {
+    "x": -5274,
+    "y": 647,
+    "neighbors": [
+      "node_ex_m2",
+      "node_ex_m4"
+    ]
+  },
+  "node_ex_m4": {
+    "x": -5274,
+    "y": 743,
+    "neighbors": [
+      "node_ex_m3",
+      "node_ex_m5"
+    ]
+  },
+  "node_ex_m5": {
+    "x": -5274,
+    "y": 837,
+    "neighbors": [
+      "node_ex_m4",
+      "node_ex_m6"
+    ]
+  },
+  "node_ex_m6": {
+    "x": -5274,
+    "y": 908,
+    "neighbors": [
+      "node_ex_m5",
+      "node_ex_m7"
+    ]
+  },
+  "node_ex_m7": {
+    "x": -5274,
+    "y": 956,
+    "neighbors": [
+      "node_ex_m6",
+      "node_ex_m8"
+    ]
+  },
+  "node_ex_m8": {
+    "x": -5274,
+    "y": 1004,
+    "neighbors": [
+      "node_ex_m7",
+      "node_ex_m9"
+    ]
+  },
+  "node_ex_m9": {
+    "x": -5274,
+    "y": 1051,
+    "neighbors": [
+      "node_ex_m8",
+      "node_ex_m10"
+    ]
+  },
+  "node_ex_m10": {
+    "x": -5274,
+    "y": 1098,
+    "neighbors": [
+      "node_ex_m9",
+      "node_ex_m11"
+    ]
+  },
+  "node_ex_m11": {
+    "x": -5274,
+    "y": 1151,
+    "neighbors": [
+      "node_ex_m10",
+      "node_ex_t6"
+    ]
+  },
+  "node_ex_w1": {
+    "x": -5290,
+    "y": -540,
+    "neighbors": [
+      "node_ex_6",
+      "node_ex_w2"
+    ]
+  },
+  "node_ex_w2": {
+    "x": -5290,
+    "y": -348,
+    "neighbors": [
+      "node_ex_w1",
+      "node_ex_w3"
+    ]
+  },
+  "node_ex_w3": {
+    "x": -5290,
+    "y": -149,
+    "neighbors": [
+      "node_ex_w2",
+      "node_ex_t18"
+    ]
+  },
+  "node_fs_a1": {
+    "x": -4799,
+    "y": -731,
+    "neighbors": [
+      "node_ex_t22",
+      "node_fs_a2"
+    ]
+  },
+  "node_fs_a2": {
+    "x": -4799,
+    "y": -638,
+    "neighbors": [
+      "node_fs_a1",
+      "node_fs_a3"
+    ]
+  },
+  "node_fs_a3": {
+    "x": -4799,
+    "y": -555,
+    "neighbors": [
+      "node_fs_a2",
+      "node_dm_t4"
+    ]
+  },
+  "node_ea_m1": {
+    "x": -3225,
+    "y": -632,
+    "neighbors": [
+      "node_ex_t19",
+      "node_ea_m2"
+    ]
+  },
+  "node_ea_m2": {
+    "x": -3225,
+    "y": -605,
+    "neighbors": [
+      "node_ea_m1",
+      "node_ea_t3"
+    ]
+  },
+  "node_ex_w4": {
+    "x": -5541,
+    "y": -316,
+    "neighbors": [
+      "node_ex_5"
     ]
   }
 }

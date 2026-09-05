@@ -219,6 +219,31 @@ export function getPrimarySnapNode(stallNodeValue) {
 }
 
 /**
+ * Resolves all candidate snap nodes for a stall from stall_nodes.json.
+ * Handles both single-string node IDs and array-of-strings candidates.
+ * Deduplicates candidates while preserving order.
+ * @param {string|string[]|null} stallNodeValue - Raw stall_nodes.json value.
+ * @returns {string[]} Array of candidate node IDs (empty array if unresolvable).
+ */
+export function getCandidateSnapNodes(stallNodeValue) {
+  if (typeof stallNodeValue === 'string' && stallNodeValue.trim()) {
+    return [stallNodeValue.trim()];
+  }
+  if (Array.isArray(stallNodeValue)) {
+    const candidates = [];
+    const seen = new Set();
+    for (const node of stallNodeValue) {
+      if (typeof node === 'string' && node.trim() && !seen.has(node.trim())) {
+        seen.add(node.trim());
+        candidates.push(node.trim());
+      }
+    }
+    return candidates;
+  }
+  return [];
+}
+
+/**
  * Binary min-heap priority queue for A*'s open set. Array-based with a
  * monotonic insertion counter, so equal-priority pops come out FIFO and the
  * search is fully deterministic (same inputs -> same path, Guardrail 9).
@@ -387,3 +412,43 @@ export function getPathCost(graph, path) {
   }
   return cost;
 }
+
+/**
+ * Evaluates all candidate access nodes for a destination stall from a starting node
+ * (e.g. entrance gate), returning the path with the shortest Euclidean walking cost.
+ * Mirrors the mobile app's multi-candidate A* evaluation (PathfindingService.aStarPath).
+ * 
+ * @param {{nodes: Object, adjacency: Object}} graph - Built via buildPathfindingGraph().
+ * @param {string} startNodeId - Entrance gate node ID.
+ * @param {string[]} candidateGoalNodeIds - Candidate goal node IDs.
+ * @returns {{ path: string[], goalNodeId: string, cost: number } | null}
+ */
+export function findOptimalPath(graph, startNodeId, candidateGoalNodeIds) {
+  if (!Array.isArray(candidateGoalNodeIds) || candidateGoalNodeIds.length === 0) {
+    return null;
+  }
+
+  let bestPath = [];
+  let bestGoalId = null;
+  let bestCost = Infinity;
+
+  for (const candidateId of candidateGoalNodeIds) {
+    if (!graph?.nodes?.[candidateId]) continue;
+    const path = findPath(graph, startNodeId, candidateId);
+    if (path.length > 0) {
+      const cost = getPathCost(graph, path);
+      if (cost < bestCost) {
+        bestCost = cost;
+        bestPath = path;
+        bestGoalId = candidateId;
+      }
+    }
+  }
+
+  if (bestPath.length === 0 || !bestGoalId) {
+    return null;
+  }
+
+  return { path: bestPath, goalNodeId: bestGoalId, cost: bestCost };
+}
+

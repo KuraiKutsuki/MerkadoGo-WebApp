@@ -787,13 +787,44 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
   dottedPath.style.strokeDasharray = `${totalLength} ${totalLength}`;
   dottedPath.style.strokeDashoffset = `${totalLength}`;
 
-  // Slower, more leisurely walking pace so user can comfortably watch each turn
-  const duration = Math.max(5500, Math.min(10000, totalLength * 3.2));
-  let startTime = null;
+  // Adaptive walking velocity, turn deceleration, and announcement readability
+  const stepCount = Array.isArray(options.steps) ? options.steps.length : 2;
+  const isShortRoute = stepCount <= 2 || totalLength < 800;
+
+  // Base speed: brisk for short/1-2 step routes, steady & comfortable for longer journeys
+  let baseSpeed = 300; // units/sec steady base speed
+  if (isShortRoute) {
+    baseSpeed = Math.max(360, Math.min(480, totalLength / 2.2));
+  } else if (totalLength > 3500) {
+    baseSpeed = 310;
+  }
+
+  // Pre-calculate turn node distances for automatic turn deceleration
+  const turnDistances = [];
+  if (Array.isArray(options.steps)) {
+    for (let i = 0; i < options.steps.length; i++) {
+      const step = options.steps[i];
+      if (
+        step.direction === 'left' ||
+        step.direction === 'right' ||
+        (typeof step.direction === 'string' && step.direction.includes('turn'))
+      ) {
+        const marker = stepMarkers[i];
+        if (marker && typeof marker.dist === 'number') {
+          turnDistances.push(marker.dist);
+        }
+      }
+    }
+  }
+
+  let currentDist = 0;
+  let lastTimestamp = null;
   let rafId = null;
   let completed = false;
   let activeStepIndex = -1;
   let bubbleTimeout = null;
+  let lastBubbleTriggerTime = -99999;
+  const MIN_BUBBLE_READ_TIME = 1500; // ms minimum on-screen hold so user can comfortably read turns
 
   function showStepBubble(text) {
     const isArrived = text.includes('Arrived');
@@ -821,7 +852,7 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     if (!isArrived) {
       bubbleTimeout = setTimeout(() => {
         bubble.classList.remove('is-active');
-      }, 2200);
+      }, 2400);
     }
   }
 
@@ -852,16 +883,48 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
 
   function step(timestamp) {
     if (completed) return;
-    if (!startTime) startTime = timestamp;
-    const elapsed = timestamp - startTime;
-    const progress = Math.min(elapsed / duration, 1);
+    if (!lastTimestamp) {
+      lastTimestamp = timestamp;
+      // Trigger initial entrance bubble immediately at departure
+      if (stepMarkers.length > 0) {
+        activeStepIndex = 0;
+        lastBubbleTriggerTime = timestamp;
+        showStepBubble(stepMarkers[0].label);
+      }
+    }
 
-    // Smooth cubic ease-in-out
-    const eased = progress < 0.5
-      ? 2 * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+    const dt = Math.min((timestamp - lastTimestamp) / 1000, 0.05);
+    lastTimestamp = timestamp;
 
-    const currentDist = eased * totalLength;
+    // 1. Calculate turn deceleration: slow down to ~45% speed within 80px of any turn apex
+    let speedMult = 1.0;
+    for (const td of turnDistances) {
+      const distToTurn = Math.abs(currentDist - td);
+      if (distToTurn < 80) {
+        const factor = 0.45 + 0.55 * (distToTurn / 80);
+        speedMult = Math.min(speedMult, factor);
+      }
+    }
+
+    // 2. Reading hold: if a turn bubble was recently shown and the next step is close, slow down to guarantee reading time
+    const timeSinceLastBubble = timestamp - lastBubbleTriggerTime;
+    const isHoldingBubble = timeSinceLastBubble < MIN_BUBBLE_READ_TIME;
+    if (isHoldingBubble && activeStepIndex >= 0 && activeStepIndex < stepMarkers.length - 1) {
+      const nextMarker = stepMarkers[activeStepIndex + 1];
+      if (nextMarker && (nextMarker.triggerDist - currentDist) < 140) {
+        speedMult *= 0.55; // gentle crawl so user can comfortably read before the next turn appears
+      }
+    }
+
+    // 3. Gentle ease-in at departure and ease-out at arrival
+    if (currentDist < 70) {
+      speedMult *= Math.max(0.4, currentDist / 70);
+    } else if (totalLength - currentDist < 60) {
+      speedMult *= Math.max(0.4, (totalLength - currentDist) / 60);
+    }
+
+    const currentSpeed = baseSpeed * speedMult;
+    currentDist = Math.min(totalLength, currentDist + currentSpeed * dt);
     const currentPt = dottedPath.getPointAtLength(currentDist);
 
     // Update avatar position
@@ -892,9 +955,14 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     for (let i = 0; i < stepMarkers.length; i++) {
       const marker = stepMarkers[i];
       if (currentDist >= marker.triggerDist && activeStepIndex < i) {
-        activeStepIndex = i;
-        showStepBubble(marker.label);
-        break;
+        // Enforce MIN_BUBBLE_READ_TIME unless this is the final arrival
+        const isArrival = marker.label.includes('Arrived');
+        if (activeStepIndex === -1 || (timestamp - lastBubbleTriggerTime) >= MIN_BUBBLE_READ_TIME || isArrival) {
+          activeStepIndex = i;
+          lastBubbleTriggerTime = timestamp;
+          showStepBubble(marker.label);
+          break;
+        }
       }
     }
 
@@ -903,7 +971,7 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
       options.onProgress(currentPt);
     }
 
-    if (progress < 1) {
+    if (currentDist < totalLength) {
       rafId = requestAnimationFrame(step);
     } else {
       finishAnimation();

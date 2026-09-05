@@ -9,7 +9,7 @@
 import { selectStall, drawRoute, clearRoute as clearRouteLayer, NODE_TO_SVG_OFFSET, getStallCenter, highlightEntranceMarker, setEntranceMarkersVisibility, cancelActiveWalkingAnimation } from './mapRenderer.js';
 import { resolveCategoryColors, normalizeCategorySlug } from './theme/colors.js';
 import { getCategorySvg } from './theme/categoryIcons.js';
-import { findPath, getPrimarySnapNode, getPathCost } from './pathfinder.js';
+import { findPath, getPrimarySnapNode, getCandidateSnapNodes, findOptimalPath, getPathCost } from './pathfinder.js';
 import { generateDirections } from './turnGenerator.js';
 
 /** Selector mirroring mapRenderer's stall hit-test targets */
@@ -504,20 +504,22 @@ export function initNavigationPanel({ routeLayer, markersLayer, graph, stallNode
   }
 
   function routeTo(entrance, destinationName, options = {}) {
-    const goalNode = getPrimarySnapNode(stallNodes[currentStallId]);
-    if (!goalNode) {
-      console.warn(`[MerkadoGo Nav] Stall "${currentStallId}" has no primary snap node — no route drawn`);
+    const candidates = getCandidateSnapNodes(stallNodes[currentStallId]);
+    if (candidates.length === 0) {
+      console.warn(`[MerkadoGo Nav] Stall "${currentStallId}" has no snap nodes — no route drawn`);
       return null;
     }
 
-    const path = findPath(graph, entrance.node_id, goalNode);
-    if (path.length === 0) {
+    const optimal = findOptimalPath(graph, entrance.node_id, candidates);
+    if (!optimal || optimal.path.length === 0) {
       console.warn(`[MerkadoGo Nav] No route from entrance ${entrance.entrance_id} to "${currentStallId}"`);
       clearRouteLayer(routeLayer);
       instructionsList.replaceChildren();
       summary.hidden = true;
       return null;
     }
+
+    const path = optimal.path;
 
     // Resolve the destination stall center so the polyline extends from the
     // nearest corridor snap node directly into the center of the stall rectangle
@@ -579,13 +581,13 @@ export function initNavigationPanel({ routeLayer, markersLayer, graph, stallNode
       onComplete: () => {
         if (btnSkipWalking) btnSkipWalking.hidden = true;
         appRoot?.classList.remove('walking-active');
-        // Frame full route bounds
-        const goalNode = getPrimarySnapNode(stallNodes[currentStallId]);
+        // Frame full route bounds using optimal path
+        const candidates = getCandidateSnapNodes(stallNodes[currentStallId]);
+        const optimal = findOptimalPath(graph, entrance.node_id, candidates);
         const stallElement = stallElements?.get(currentStallId);
         const destCenter = getStallCenter(stallElement);
-        const path = findPath(graph, entrance.node_id, goalNode);
-        if (path.length > 0) {
-          onFocusBounds?.(computeRouteBounds(path, destCenter));
+        if (optimal && optimal.path.length > 0) {
+          onFocusBounds?.(computeRouteBounds(optimal.path, destCenter));
         }
         // Open navigation panel in clean minimized bar mode so map & destination arrival are showcased
         setMinimized(true);
@@ -599,12 +601,12 @@ export function initNavigationPanel({ routeLayer, markersLayer, graph, stallNode
 
   /**
    * Opens the panel for a destination stall and routes from the entrance
-   * with the shortest A* walking distance to it. Returns false when the
-   * stall cannot be snapped to the graph (warn, never crash).
+   * with the shortest A* walking distance to it across all candidate access nodes.
+   * Returns false when the stall cannot be snapped to the graph (warn, never crash).
    */
   function openForStall(stallId) {
-    const goalNode = getPrimarySnapNode(stallNodes[stallId]);
-    if (!goalNode) {
+    const candidates = getCandidateSnapNodes(stallNodes[stallId]);
+    if (candidates.length === 0) {
       console.warn(`[MerkadoGo Nav] Cannot route to "${stallId}" — no snap node in stall_nodes.json`);
       return false;
     }
@@ -615,13 +617,13 @@ export function initNavigationPanel({ routeLayer, markersLayer, graph, stallNode
     destinationLabel.textContent = `To: ${currentDestinationName}`;
     if (minimizedTitle) minimizedTitle.textContent = currentDestinationName;
 
-    // Nearest entrance by walking distance over the corridor graph
+    // Nearest entrance by true walking distance over the corridor graph across all candidate access nodes
     let nearest = entryPoints[0];
     let nearestCost = Infinity;
     for (const entry of entryPoints) {
-      const cost = getPathCost(graph, findPath(graph, entry.node_id, goalNode));
-      if (cost < nearestCost) {
-        nearestCost = cost;
+      const optimal = findOptimalPath(graph, entry.node_id, candidates);
+      if (optimal && optimal.cost < nearestCost) {
+        nearestCost = optimal.cost;
         nearest = entry;
       }
     }
