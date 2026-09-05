@@ -1,7 +1,7 @@
 /**
  * MerkadoGo Web — Main Application Entry Point
  */
-import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall, renderEntranceMarkers, setEntranceMarkersVisibility, highlightEntranceMarker, dismissSplashScreen } from './mapRenderer.js';
+import { loadAndInjectMap, setupStallHitTesting, applyVendorColors, applyVendorToStall, applyUnassignedStyle, selectStall, renderEntranceMarkers, setEntranceMarkersVisibility, highlightEntranceMarker, updateEntranceMarkersRotation, updateWalkingAvatarRotation, dismissSplashScreen } from './mapRenderer.js';
 import { MapControls } from './mapControls.js';
 import { initStallDetailCard, initNavigationPanel, initEntrancePreviewCard, initCategoryPanel, initLiveClock } from './uiController.js';
 import { loadStaticData, getStaticData, getStallNodeIds, loadVendorData, getVendorData, getVendorByStallId, upsertVendorRecord, removeVendorRecord } from './dataStore.js';
@@ -43,11 +43,10 @@ function handleLiveStallChange(changeType, stall) {
   } else {
     upsertVendorRecord(stall);
     applyVendorToStall(stall, appState.mapContext.stallElements);
-  }
-
-  // Refresh the detail card live if the user is looking at this exact stall
-  if (appState.selectedStallId === stall.stallId) {
-    appState.stallCard.showStall(stall.stallId);
+    // If the detail card is currently showing this stall, refresh it live
+    if (appState.stallCard?.isOpenForStall(stall.stallId)) {
+      appState.stallCard.showStall(stall.stallId);
+    }
   }
 }
 
@@ -60,6 +59,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     appState.mapContext = mapContext;
     appState.mapControls = mapControls;
+
+    // Task 4.11 & 4.12: Rotation-Aware Navigation & Upright Wayfinding Billboarding
+    // Synchronously counter-rotates all entrance pins, badges, and walking pedestrian avatar on map rotation
+    mapControls.addRotationListener((rotationDeg) => {
+      updateEntranceMarkersRotation(mapContext.markersLayer, rotationDeg);
+      updateWalkingAvatarRotation(mapContext.routeLayer, rotationDeg);
+    });
 
     // Phase 3 / Tasks 3.1 + 3.2: fetch & validate static datasets, then load
     // the vendor directory fallback (both in parallel — they are independent)
@@ -121,6 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         appState.entrancePreviewCard?.show(entrance);
       }
     );
+    updateEntranceMarkersRotation(mapContext.markersLayer, mapControls.rotation);
 
     // Task 4.6: Entrance Preview Card — shows real-life photo/storefront fallback,
     // entrance description, and "Start Route Here" button
@@ -164,11 +171,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       },
       onFocusBounds: (bounds) => {
-        // Frame the whole route in the viewport; fit width from the
-        // container's aspect so both dimensions fit, with 40% breathing room
+        // Frame the whole route in the viewport; fit width from the container's
+        // aspect so both dimensions fit, taking active map rotation into account
         const rect = mapViewport.getBoundingClientRect();
         const aspect = (rect.height || 1) / (rect.width || 1);
-        const fitWidth = Math.max(bounds.width, bounds.height / aspect) * 1.4;
+
+        const rotationDeg = mapControls.rotation || 0;
+        const rad = rotationDeg * (Math.PI / 180);
+        const cosR = Math.abs(Math.cos(rad));
+        const sinR = Math.abs(Math.sin(rad));
+
+        const w = bounds.width || 0;
+        const h = bounds.height || 0;
+
+        // Bounding box dimensions projected onto screen space
+        const screenWidth = w * cosR + h * sinR;
+        const screenHeight = w * sinR + h * cosR;
+
+        const fitWidth = Math.max(screenWidth, screenHeight / aspect) * 1.4;
         mapControls.focusOnCoordinates(bounds.cx, bounds.cy, fitWidth > 0 ? fitWidth : 1200);
       },
       onAvatarMove: (pt) => {

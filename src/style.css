@@ -1699,6 +1699,10 @@ button, input, select, textarea {
   transition: opacity 0.2s ease;
 }
 
+.walker-rotator {
+  pointer-events: none;
+}
+
 .walker-visual {
   transform-origin: 0 0;
   transition: transform 0.16s ease-out;

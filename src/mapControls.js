@@ -44,6 +44,7 @@ export class MapControls {
 
     // Rotation State (in degrees)
     this.rotation = 0;
+    this.rotationListeners = new Set();
 
     // Active Pointer Tracking
     this.activePointers = new Map(); // pointerId -> { x, y }
@@ -229,6 +230,36 @@ export class MapControls {
     const resetIcon = document.querySelector('#btn-reset-view svg');
     if (resetIcon) {
       resetIcon.style.transform = `rotate(${-this.rotation}deg)`;
+    }
+
+    this.notifyRotation();
+  }
+
+  /**
+   * Subscribes a callback to real-time rotation changes.
+   * @param {function(number): void} callback - Called with current rotation in degrees
+   * @returns {function(): void} Unsubscribe function
+   */
+  addRotationListener(callback) {
+    if (typeof callback === 'function') {
+      this.rotationListeners.add(callback);
+      // Immediately notify with current rotation
+      callback(this.rotation);
+    }
+    return () => this.removeRotationListener(callback);
+  }
+
+  removeRotationListener(callback) {
+    this.rotationListeners.delete(callback);
+  }
+
+  notifyRotation() {
+    for (const listener of this.rotationListeners) {
+      try {
+        listener(this.rotation);
+      } catch (err) {
+        console.warn('[MapControls] Error in rotation listener:', err);
+      }
     }
   }
 
@@ -571,22 +602,44 @@ export class MapControls {
     this.animateToViewBox(targetX, targetY, targetW, targetH, this.rotation, 220);
   }
 
-  focusOnCoordinates(x, y, targetWidth = 1200) {
+  /**
+   * Smoothly frames the camera on the target coordinates while preserving current rotation.
+   * @param {number} x - SVG target X in layer coordinates
+   * @param {number} y - SVG target Y in layer coordinates
+   * @param {number} [targetWidth=1200] - Viewport width
+   * @param {boolean|number} [preserveRotation=true] - If true, preserves current rotation; if number, animates to that degree
+   */
+  focusOnCoordinates(x, y, targetWidth = 1200, preserveRotation = true) {
     const rect = this.container.getBoundingClientRect();
     const aspect = rect.height / rect.width;
     const targetHeight = targetWidth * aspect;
 
-    const targetX = x - (targetWidth / 2);
-    const targetY = y - (targetHeight / 2);
+    const toRot = typeof preserveRotation === 'number'
+      ? preserveRotation
+      : (preserveRotation ? this.rotation : 0);
 
-    this.animateToViewBox(targetX, targetY, targetWidth, targetHeight, 0, 280);
+    // Transform layer coordinate (x, y) into root viewBox space by applying rotation around marketCenter
+    const rad = toRot * (Math.PI / 180);
+    const cosR = Math.cos(rad);
+    const sinR = Math.sin(rad);
+    const dx = x - this.marketCenterX;
+    const dy = y - this.marketCenterY;
+
+    const cx_vb = this.marketCenterX + dx * cosR - dy * sinR;
+    const cy_vb = this.marketCenterY + dx * sinR + dy * cosR;
+
+    const targetX = cx_vb - (targetWidth / 2);
+    const targetY = cy_vb - (targetHeight / 2);
+
+    this.animateToViewBox(targetX, targetY, targetWidth, targetHeight, toRot, 280);
   }
 
   /**
    * Smoothly centers the camera on dynamic coordinates in real time.
    * Used for real-time avatar tracking during walking navigation animation.
-   * @param {number} x - SVG target X
-   * @param {number} y - SVG target Y
+   * Accurately projects layer (x, y) into root viewBox space at any map rotation angle.
+   * @param {number} x - SVG target X in layer coordinates
+   * @param {number} y - SVG target Y in layer coordinates
    * @param {number|null} [targetWidth] - Viewport width; defaults to current or max 1400
    */
   centerOnCoordinates(x, y, targetWidth = null) {
@@ -596,22 +649,32 @@ export class MapControls {
     const w = targetWidth || Math.min(this.vb.width, 1400);
     const h = w * aspect;
 
+    // Transform layer coordinate (x, y) into root viewBox space at current map rotation
+    const rad = this.rotation * (Math.PI / 180);
+    const cosR = Math.cos(rad);
+    const sinR = Math.sin(rad);
+    const dx = x - this.marketCenterX;
+    const dy = y - this.marketCenterY;
+
+    const cx_vb = this.marketCenterX + dx * cosR - dy * sinR;
+    const cy_vb = this.marketCenterY + dx * sinR + dy * cosR;
+
     this.vb.width = w;
     this.vb.height = h;
-    this.vb.x = x - (w / 2);
-    this.vb.y = y - (h / 2);
+    this.vb.x = cx_vb - (w / 2);
+    this.vb.y = cy_vb - (h / 2);
 
     this.clampViewBox();
     this.renderViewBox();
   }
 
-  focusElement(element, targetWidth = 1000) {
+  focusElement(element, targetWidth = 1000, preserveRotation = true) {
     if (!element || typeof element.getBBox !== 'function') return;
     try {
       const bbox = element.getBBox();
       const cx = bbox.x + bbox.width / 2;
       const cy = bbox.y + bbox.height / 2;
-      this.focusOnCoordinates(cx, cy, targetWidth);
+      this.focusOnCoordinates(cx, cy, targetWidth, preserveRotation);
     } catch (err) {
       console.warn('[MapControls] Could not get element bbox:', err);
     }

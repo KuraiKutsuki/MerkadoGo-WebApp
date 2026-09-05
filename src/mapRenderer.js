@@ -193,17 +193,42 @@ export function cancelActiveWalkingAnimation() {
   }
 }
 
+let currentMapRotation = 0;
+
+/**
+ * Counter-rotates any active walking pedestrian avatar in #route-layer by -rotationDeg
+ * so the character and speech bubble HUD always remain 100% upright facing the user.
+ * @param {SVGGElement} routeLayer - The #route-layer SVG group
+ * @param {number} rotationDeg - Current map rotation in degrees
+ */
+export function updateWalkingAvatarRotation(routeLayer, rotationDeg) {
+  currentMapRotation = rotationDeg;
+  if (!routeLayer) return;
+  const rotators = routeLayer.querySelectorAll('.walker-rotator');
+  const counterAngle = -rotationDeg;
+  rotators.forEach((rotator) => {
+    rotator.setAttribute('transform', `rotate(${counterAngle}, 0, 0)`);
+  });
+}
+
 /**
  * Creates an animated vector walking pedestrian avatar.
  * Features articulated legs and arms with synchronized walk cycles,
  * a crimson market tote bag, a forest green cap, directional orientation flipping,
  * and a celebratory greeting wave upon arrival at the destination stall.
- * @returns {{ avatarGroup: SVGGElement, visual: SVGGElement }}
+ * @returns {{ avatarGroup: SVGGElement, rotator: SVGGElement, visual: SVGGElement }}
  */
 function createWalkingAvatar() {
   const NS = 'http://www.w3.org/2000/svg';
   const avatarGroup = document.createElementNS(NS, 'g');
   avatarGroup.setAttribute('class', 'route-walking-avatar is-walking');
+
+  // Rotator group for dynamic billboarding:
+  // Counter-rotates the entire avatar, speech bubble, and shadows by -currentMapRotation around (0, 0)
+  // so the pedestrian and turn-by-turn announcement bubble ALWAYS stand upright facing the user
+  const rotator = document.createElementNS(NS, 'g');
+  rotator.setAttribute('class', 'walker-rotator');
+  rotator.setAttribute('transform', `rotate(${-currentMapRotation}, 0, 0)`);
 
   // Scaler group: scaled to 3.5x for crisp corridor visibility with balanced anatomy
   const scaler = document.createElementNS(NS, 'g');
@@ -602,8 +627,9 @@ function createWalkingAvatar() {
   bubble.appendChild(bubbleText);
   scaler.appendChild(bubble);
 
-  avatarGroup.appendChild(scaler);
-  return { avatarGroup, visual, bubble, bubbleBg, bubbleIcon, bubbleText };
+  rotator.appendChild(scaler);
+  avatarGroup.appendChild(rotator);
+  return { avatarGroup, rotator, visual, bubble, bubbleBg, bubbleIcon, bubbleText };
 }
 
 export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, options = {}) {
@@ -841,13 +867,19 @@ export function drawRoute(routeLayer, nodeIds, nodes, destinationPoint = null, o
     // Update avatar position
     avatarGroup.setAttribute('transform', `translate(${currentPt.x.toFixed(2)}, ${currentPt.y.toFixed(2)})`);
 
-    // Directional orientation: face the direction of walking
+    // Directional orientation: face the direction of walking across screen space
     const nextDist = Math.min(currentDist + 8, totalLength);
     const nextPt = dottedPath.getPointAtLength(nextDist);
     const dx = nextPt.x - currentPt.x;
-    if (dx < -0.8) {
+    const dy = nextPt.y - currentPt.y;
+
+    // Project layer displacement (dx, dy) into screen space via active rotation angle
+    const rad = currentMapRotation * (Math.PI / 180);
+    const dx_screen = dx * Math.cos(rad) - dy * Math.sin(rad);
+
+    if (dx_screen < -0.8) {
       visual.style.transform = 'scaleX(-1)';
-    } else if (dx > 0.8) {
+    } else if (dx_screen > 0.8) {
       visual.style.transform = 'scaleX(1)';
     }
 
@@ -901,6 +933,24 @@ export function clearRoute(routeLayer) {
 }
 
 /**
+ * Counter-rotates all entrance marker groups by -rotationDeg around (0,0) so that
+ * the location pin tip remains locked to the entrance coordinate while the pin body,
+ * avatar, entry badge pill, and touch hitbox remain 100% upright and readable facing the user.
+ *
+ * @param {SVGGElement} markersLayer - The #markers-layer SVG group
+ * @param {number} rotationDeg - Current map rotation in degrees
+ */
+export function updateEntranceMarkersRotation(markersLayer, rotationDeg) {
+  currentMapRotation = rotationDeg;
+  if (!markersLayer) return;
+  const rotators = markersLayer.querySelectorAll('.entrance-marker-rotator');
+  const counterAngle = -rotationDeg;
+  rotators.forEach((rotator) => {
+    rotator.setAttribute('transform', `rotate(${counterAngle}, 0, 0)`);
+  });
+}
+
+/**
  * Renders the 14 demand-driven entrance markers into #markers-layer.
  * Each marker is positioned using NODE_TO_SVG_OFFSET and features a 48x48px
  * touch hitbox for kiosk and mobile ergonomics.
@@ -930,6 +980,14 @@ export function renderEntranceMarkers(markersLayer, entryPoints, mapNodes, onEnt
     g.setAttribute('transform', `translate(${sx}, ${sy})`);
     g.setAttribute('role', 'button');
     g.setAttribute('aria-label', `Entrance ${entry.entrance_id}: ${entry.description}`);
+
+    // Rotator group for dynamic billboarding:
+    // Counter-rotates everything around (0,0) by -currentEntranceMarkersRotation.
+    // Pin tip stays anchored at the entrance coordinate while pin body, avatar,
+    // and entry badge pill always remain upright facing the user.
+    const rotator = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    rotator.setAttribute('class', 'entrance-marker-rotator');
+    rotator.setAttribute('transform', `rotate(${-currentMapRotation}, 0, 0)`);
 
     // Large high-contrast vector pin matching user reference:
     // Pin head circle center: (0, -74), radius R = 38. Top of pin at y = -112.
@@ -1014,8 +1072,9 @@ export function renderEntranceMarkers(markersLayer, entryPoints, mapNodes, onEnt
     visual.appendChild(pillBg);
     visual.appendChild(pillText);
 
-    g.appendChild(hitbox);
-    g.appendChild(visual);
+    rotator.appendChild(hitbox);
+    rotator.appendChild(visual);
+    g.appendChild(rotator);
 
     g.addEventListener('click', (e) => {
       e.stopPropagation();
